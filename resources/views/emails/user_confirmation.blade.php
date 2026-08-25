@@ -76,6 +76,7 @@
 <body>
     <div class="container">
         <div class="header">
+            <img src="{{ asset('logo.png') }}" alt="MaxMark Builders" style="height: 44px; width: auto; display: block; margin: 0 auto 10px;">
             <h1>MaxMark Builders</h1>
             <p>Thank you for reaching out to us!</p>
         </div>

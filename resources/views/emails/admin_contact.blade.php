@@ -79,6 +79,7 @@
 <body>
     <div class="container">
         <div class="header">
+            <img src="{{ asset('logo.png') }}" alt="MaxMark Builders" style="height: 44px; width: auto; display: block; margin: 0 auto 10px;">
             <h1>MaxMark Builders</h1>
             <p style="margin: 5px 0 0 0; font-size: 13px; color: #94a3b8;">
                 {{ isset($data['service']) ? 'New Instant Quote Request' : 'New Contact Inquiry Received' }}

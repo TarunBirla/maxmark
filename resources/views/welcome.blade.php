@@ -3,11 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="csrf-token" content="{{ csrf_token() }}">
 <title>MaxMark Builders — Building & Renovation, Done Right</title>
-<link rel="icon" type="image/png" href="{{ asset('logo.png') }}">
-<link rel="shortcut icon" type="image/png" href="{{ asset('logo.png') }}">
-<link rel="apple-touch-icon" href="{{ asset('logo.png') }}">
 <meta name="description" content="Loft conversions, extensions, full renovations across West London. Free quote in 60 seconds, fully insured, 5-year guarantee.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -60,12 +56,13 @@ h1,h2,h3,h4{font-family:'Space Grotesk',sans-serif;font-weight:700;letter-spacin
   font-weight:500;
 }
 .eyebrow::before{content:'';width:22px;height:1px;background:var(--brass);}
+.eyebrow.light{color:var(--brass-light);}
+.eyebrow.light::before{background:var(--brass-light);}
 @media(prefers-reduced-motion:reduce){
   *{animation-duration:0.01ms !important;animation-iteration-count:1 !important;transition-duration:0.01ms !important;scroll-behavior:auto !important;}
 }
 ::selection{background:var(--brass);color:var(--ink);}
 
-/* focus visibility */
 a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible{
   outline:2px solid var(--brass); outline-offset:3px;
 }
@@ -160,6 +157,8 @@ nav.main-nav a.nav-link:hover::after{width:100%;}
 .btn-brass:hover{background:var(--brass-light); transform:translateY(-2px); box-shadow:0 12px 24px rgba(184,134,59,.28);}
 .btn-outline{border:1px solid var(--line-dark); color:var(--paper-2);}
 .btn-outline:hover{border-color:var(--brass-light); color:var(--brass-light); transform:translateY(-2px);}
+.btn-outline-dark{border:1px solid var(--line); color:var(--ink);}
+.btn-outline-dark:hover{border-color:var(--brass); color:var(--brass); transform:translateY(-2px);}
 .btn-signal{background:var(--signal); color:#fff;}
 .btn-signal:hover{background:#ef6a41; transform:translateY(-2px); box-shadow:0 12px 24px rgba(228,87,46,.32);}
 .btn-dark{background:var(--ink); color:var(--paper-2);}
@@ -172,10 +171,10 @@ nav.main-nav a.nav-link:hover::after{width:100%;}
 .icon-btn svg{width:18px;height:18px;}
 .burger{display:none;}
 
-/* ===================== HERO ===================== */
+/* ===================== HERO (with image bento) ===================== */
 .hero{
   position:relative; background:var(--ink); color:var(--paper-2); overflow:hidden;
-  padding:104px 0 88px;
+  padding:88px 0 96px;
 }
 .hero .grid-bg{
   position:absolute; inset:0;
@@ -191,7 +190,7 @@ nav.main-nav a.nav-link:hover::after{width:100%;}
   background:radial-gradient(circle, rgba(184,134,59,.18), transparent 70%);
   top:-220px; right:-160px; pointer-events:none;
 }
-.hero-inner{position:relative; z-index:2; display:grid; grid-template-columns:1.05fr 0.95fr; gap:40px; align-items:center;}
+.hero-inner{position:relative; z-index:2; display:grid; grid-template-columns:1.05fr 0.95fr; gap:48px; align-items:center;}
 .hero h1{font-size:clamp(38px,4.6vw,64px); margin:22px 0 20px; max-width:620px;}
 .hero h1 .accent{color:var(--brass-light); font-style:italic; font-weight:500;}
 .hero p.lede{font-size:17.5px; color:var(--slate-light); max-width:500px; margin-bottom:34px;}
@@ -202,8 +201,34 @@ nav.main-nav a.nav-link:hover::after{width:100%;}
 .trust-item b{color:var(--paper-2); font-family:'JetBrains Mono',monospace; font-weight:600;}
 .divider-dot{width:4px;height:4px;border-radius:50%;background:var(--line-dark);}
 
-/* blueprint house illustration */
-.blueprint-wrap{position:relative;}
+/* Hero bento images */
+.hero-bento{
+  position:relative; display:grid; grid-template-columns:1.2fr 1fr; grid-template-rows:1fr 1fr; gap:14px;
+  height:520px;
+}
+.bento-img{
+  position:relative; overflow:hidden; border:1px solid var(--line-dark); background:var(--ink-2);
+}
+.bento-img img{width:100%;height:100%;object-fit:cover; transition:transform .8s var(--ease);}
+.bento-img:hover img{transform:scale(1.05);}
+.bento-img.main{grid-row:1 / 3;}
+.bento-img .tag{
+  position:absolute; left:14px; bottom:14px; background:rgba(18,22,28,.8);
+  backdrop-filter:blur(8px); color:var(--paper-2); font-family:'JetBrains Mono',monospace;
+  font-size:11px; letter-spacing:.12em; padding:7px 12px;
+}
+.bento-img .tag .dot{display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--brass-light);margin-right:6px;vertical-align:middle;}
+.hero-badge{
+  position:absolute; top:18px; right:18px; background:var(--brass); color:var(--ink);
+  font-family:'JetBrains Mono',monospace; font-size:11px; font-weight:600; letter-spacing:.1em;
+  padding:8px 14px; z-index:3;
+}
+@media(max-width:900px){
+  .hero-bento{height:380px;}
+}
+
+/* blueprint house illustration (kept for compact layout) */
+.blueprint-wrap{position:relative;display:none;}
 .blueprint-card{
   position:relative; border:1px solid var(--line-dark); background:rgba(255,255,255,.02);
   padding:28px; backdrop-filter:blur(2px);
@@ -240,7 +265,7 @@ nav.main-nav a.nav-link:hover::after{width:100%;}
 
 /* ===================== SECTION GENERIC ===================== */
 section{padding:110px 0;}
-.section-head{max-width:640px; margin-bottom:56px;}
+.section-head{max-width:680px; margin-bottom:56px;}
 .section-head h2{font-size:clamp(30px,3.4vw,44px); margin:16px 0 14px; color:var(--ink);}
 .section-head p{color:var(--slate); font-size:16px;}
 .section-head.center{margin-left:auto; margin-right:auto; text-align:center;}
@@ -248,22 +273,81 @@ section{padding:110px 0;}
 .section-dark .section-head h2{color:var(--paper-2);}
 .section-dark .section-head p{color:var(--slate-light);}
 
+/* ===================== FEATURED PROJECTS BENTO ===================== */
+.projects-bento{
+  display:grid;
+  grid-template-columns:repeat(6, 1fr);
+  grid-auto-rows:240px;
+  gap:14px;
+}
+.bento-tile{
+  position:relative; overflow:hidden; background:var(--ink-2);
+  transition:transform .4s var(--ease);
+}
+.bento-tile img{width:100%;height:100%;object-fit:cover; transition:transform .8s var(--ease);}
+.bento-tile:hover img{transform:scale(1.06);}
+.bento-tile:hover .tile-overlay{opacity:1;}
+.bento-tile.t1{grid-column:span 3; grid-row:span 2;}
+.bento-tile.t2{grid-column:span 2; grid-row:span 1;}
+.bento-tile.t3{grid-column:span 1; grid-row:span 1;}
+.bento-tile.t4{grid-column:span 2; grid-row:span 1;}
+.bento-tile.t5{grid-column:span 1; grid-row:span 1;}
+.bento-tile.t6{grid-column:span 3; grid-row:span 1;}
+.bento-tile.t7{grid-column:span 3; grid-row:span 1;}
+.tile-overlay{
+  position:absolute; inset:0; display:flex; flex-direction:column; justify-content:flex-end;
+  padding:24px; color:#fff;
+  background:linear-gradient(to top, rgba(0,0,0,.85) 0%, rgba(0,0,0,.25) 50%, transparent 100%);
+  opacity:.95; transition:opacity .35s var(--ease);
+}
+.tile-overlay .tile-cat{font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:.14em; color:var(--brass-light); text-transform:uppercase; margin-bottom:8px;}
+.tile-overlay h3{font-size:22px; color:#fff; margin-bottom:6px;}
+.tile-overlay .tile-meta{font-size:13px; color:rgba(255,255,255,.7); display:flex; align-items:center; gap:10px;}
+.tile-overlay .tile-meta span.dot{width:3px;height:3px;border-radius:50%;background:rgba(255,255,255,.5);}
+.tile-corner{
+  position:absolute; top:16px; right:16px; background:rgba(18,22,28,.7);
+  color:#fff; font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:.14em;
+  padding:6px 10px; backdrop-filter:blur(6px);
+}
+@media(max-width:900px){
+  .projects-bento{grid-template-columns:repeat(2,1fr); grid-auto-rows:200px;}
+  .bento-tile.t1{grid-column:span 2; grid-row:span 2;}
+  .bento-tile.t2{grid-column:span 1;}
+  .bento-tile.t3{grid-column:span 1;}
+  .bento-tile.t4{grid-column:span 1;}
+  .bento-tile.t5{grid-column:span 1;}
+  .bento-tile.t6{grid-column:span 2;}
+  .bento-tile.t7{grid-column:span 2;}
+}
+
 /* ===================== SERVICES ===================== */
 .services-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:var(--line); border:1px solid var(--line);}
 .service-card{
   background:var(--paper-2); padding:32px 26px; position:relative; overflow:hidden;
   transition:background .35s var(--ease);
 }
+.service-card .svc-photo{
+  position:absolute; inset:0; opacity:0; transition:opacity .5s var(--ease);
+  z-index:0;
+}
+.service-card .svc-photo img{width:100%;height:100%;object-fit:cover;}
+.service-card .svc-photo::after{
+  content:''; position:absolute; inset:0;
+  background:linear-gradient(180deg, rgba(18,22,28,.4) 0%, rgba(18,22,28,.92) 60%, var(--ink) 100%);
+}
+.service-card .svc-content{position:relative; z-index:1; transition:transform .35s var(--ease);}
 .service-card:hover{background:var(--ink);}
+.service-card:hover .svc-photo{opacity:1;}
 .service-card:hover .svc-title,.service-card:hover .svc-desc{color:var(--paper-2);}
 .service-card:hover .svc-desc{color:var(--slate-light);}
 .service-card:hover .svc-icon{border-color:var(--brass-light); background:rgba(184,134,59,.15);}
 .service-card:hover .svc-icon svg{stroke:var(--brass-light);}
 .service-card:hover .svc-arrow{opacity:1; transform:translateX(0);}
-.svc-num{font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--slate-light); position:absolute; top:24px; right:26px;}
+.svc-num{font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--slate-light); position:absolute; top:24px; right:26px; z-index:2; transition:color .3s;}
+.service-card:hover .svc-num{color:var(--brass-light);}
 .svc-icon{
   width:52px; height:52px; border:1px solid var(--line); border-radius:50%; display:flex; align-items:center; justify-content:center;
-  margin-bottom:22px; transition:border-color .3s, background .3s;
+  margin-bottom:22px; transition:border-color .3s, background .3s; background:rgba(255,255,255,.7);
 }
 .svc-icon svg{width:24px;height:24px; stroke:var(--brass); stroke-width:1.5; fill:none;}
 .svc-title{font-size:17px; font-weight:600; margin-bottom:10px; transition:color .3s; color:var(--ink);}
@@ -280,20 +364,53 @@ section{padding:110px 0;}
 .stat-box .stat-num{font-family:'Space Grotesk',sans-serif; font-size:clamp(36px,4vw,56px); font-weight:700; color:var(--brass-light); line-height:1;}
 .stat-box .stat-label{margin-top:10px; font-size:13px; color:var(--slate-light); font-family:'JetBrains Mono',monospace; letter-spacing:.06em;}
 
+/* ===================== ABOUT IMAGE STRIP ===================== */
+.about-strip{
+  display:grid; grid-template-columns:1.1fr 1fr; gap:60px; align-items:center;
+  margin-top:60px;
+}
+.about-img{
+  position:relative; aspect-ratio:4/5; overflow:hidden; background:var(--ink-2);
+}
+.about-img img{width:100%;height:100%;object-fit:cover;}
+.about-img .img-tag{
+  position:absolute; left:20px; bottom:20px; background:var(--ink); color:var(--paper-2);
+  padding:14px 20px; font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:.12em;
+  display:flex; align-items:center; gap:10px;
+}
+.about-img .img-tag .pulse-dot{background:var(--brass-light);}
+.about-copy h3{font-size:28px; margin:14px 0 16px; color:var(--paper-2);}
+.about-copy p{font-size:15px; color:var(--slate-light); line-height:1.75; margin-bottom:18px;}
+.about-features{display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-top:24px;}
+.about-feature{display:flex; align-items:flex-start; gap:12px; padding:14px 16px; background:rgba(184,134,59,.06); border:1px solid var(--line-dark);}
+.about-feature .af-icon{width:32px;height:32px; flex-shrink:0; border:1px solid var(--brass); border-radius:50%; display:flex; align-items:center; justify-content:center;}
+.about-feature .af-icon svg{width:15px;height:15px; stroke:var(--brass-light);}
+.about-feature strong{color:var(--paper-2); display:block; font-size:14px; margin-bottom:2px;}
+.about-feature span{color:var(--slate-light); font-size:12.5px;}
+
 /* ===================== PROCESS ===================== */
 .process-list{display:flex; flex-direction:column;}
 .process-item{
-  display:grid; grid-template-columns:110px 1fr; gap:32px; padding:36px 0; border-top:1px solid var(--line);
-  position:relative;
+  display:grid; grid-template-columns:110px 80px 1fr; gap:32px; padding:36px 0; border-top:1px solid var(--line);
+  position:relative; align-items:center;
 }
 .process-item:last-child{border-bottom:1px solid var(--line);}
 .process-num{font-family:'JetBrains Mono',monospace; font-size:15px; color:var(--brass); align-self:start; padding-top:4px;}
+.process-thumb{
+  position:relative; width:80px; height:80px; overflow:hidden; border:1px solid var(--line);
+}
+.process-thumb img{width:100%;height:100%;object-fit:cover; filter:saturate(.85);}
 .process-body h3{font-size:22px; margin-bottom:10px; color:var(--ink);}
 .process-body p{color:var(--slate); max-width:560px; font-size:15px;}
 .process-item .process-line{
   position:absolute; left:0; top:0; height:0; width:2px; background:var(--brass); transition:height 1s var(--ease);
 }
 .process-item.in .process-line{height:100%;}
+@media(max-width:700px){
+  .process-item{grid-template-columns:1fr; gap:14px;}
+  .process-thumb{width:100%; height:120px;}
+  .about-strip{grid-template-columns:1fr; gap:30px;}
+}
 
 /* ===================== PORTFOLIO / BEFORE-AFTER ===================== */
 .portfolio-tabs{display:flex; gap:10px; margin-bottom:38px; flex-wrap:wrap;}
@@ -304,18 +421,17 @@ section{padding:110px 0;}
   background:var(--ink);
 }
 .compare-panel{position:absolute; inset:0; display:flex; flex-direction:column; justify-content:flex-end; padding:26px;}
-.compare-panel.before{background:
-    repeating-linear-gradient(45deg, rgba(255,255,255,0.04) 0 2px, transparent 2px 14px),
-    linear-gradient(135deg,#2a323e,#161a20);}
-.compare-panel.after{
-  background:linear-gradient(135deg, #3a2c1c, #12161d 70%);
-  clip-path:inset(0 0 0 50%);
-}
-.compare-panel .tag{font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:.12em; color:var(--brass-light); background:rgba(18,22,29,.55); display:inline-block; padding:6px 12px; margin-bottom:10px; width:max-content;}
-.compare-panel h4{color:var(--paper-2); font-size:20px;}
+.compare-panel .img-fill{position:absolute; inset:0;}
+.compare-panel .img-fill img{width:100%;height:100%;object-fit:cover;}
+.compare-panel .img-fill::after{content:''; position:absolute; inset:0; background:linear-gradient(to top, rgba(18,22,28,.85), transparent 55%);}
+.compare-panel .tag{font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:.12em; color:var(--brass-light); background:rgba(18,22,29,.55); display:inline-block; padding:6px 12px; margin-bottom:10px; width:max-content; position:relative; z-index:2;}
+.compare-panel h4{color:var(--paper-2); font-size:20px; position:relative; z-index:2;}
+.compare-panel .img-fill.before::after{background:linear-gradient(135deg, rgba(0,0,0,.4), rgba(0,0,0,.65));}
+.compare-panel .img-fill.after::after{background:linear-gradient(to top, rgba(18,22,28,.7), transparent 55%);}
+.compare-panel.before .img-fill{filter:grayscale(.8) brightness(.7);}
 .compare-handle{
   position:absolute; top:0; bottom:0; left:50%; width:2px; background:var(--brass-light);
-  transform:translateX(-1px); cursor:ew-resize;
+  transform:translateX(-1px); cursor:ew-resize; z-index:5;
 }
 .compare-handle .grip{
   position:absolute; top:50%; left:50%; transform:translate(-50%,-50%);
@@ -325,10 +441,17 @@ section{padding:110px 0;}
 .compare-handle .grip svg{width:20px;height:20px; stroke:var(--ink); stroke-width:2;}
 .compare-caption{margin-top:16px; display:flex; justify-content:space-between; align-items:center; font-size:13.5px; color:var(--slate);}
 
-/* room sketch decorations inside compare */
-.sketch-lines{position:absolute; inset:0; opacity:.5;}
-.sketch-lines svg{width:100%;height:100%;}
-.sketch-lines path{fill:none;stroke:rgba(236,230,216,.35);stroke-width:1;}
+/* ===================== FULL-BLEED IMAGE BANNER ===================== */
+.image-banner{
+  position:relative; padding:160px 0; overflow:hidden; color:#fff; text-align:center;
+}
+.image-banner .bg-img{position:absolute; inset:0; z-index:0;}
+.image-banner .bg-img img{width:100%;height:100%;object-fit:cover;}
+.image-banner .bg-img::after{content:''; position:absolute; inset:0; background:linear-gradient(120deg, rgba(18,22,28,.88) 0%, rgba(18,22,28,.6) 100%);}
+.image-banner .wrap{position:relative; z-index:1; max-width:820px;}
+.image-banner h2{color:#fff; font-size:clamp(30px,3.6vw,46px); margin:16px 0 18px;}
+.image-banner p{color:rgba(255,255,255,.78); font-size:17px; max-width:580px; margin:0 auto 32px;}
+.image-banner .cta-row{justify-content:center;}
 
 /* ===================== QUOTE CALCULATOR ===================== */
 .quote-section{background:var(--ink); color:var(--paper-2); position:relative; overflow:hidden;}
@@ -388,7 +511,8 @@ section{padding:110px 0;}
 .testi-card .stars{font-size:18px; margin-bottom:22px;}
 .testi-card p.quote{font-family:'Space Grotesk',sans-serif; font-size:clamp(20px,2.4vw,27px); font-weight:500; line-height:1.5; color:var(--ink); margin-bottom:26px;}
 .testi-meta{display:flex; align-items:center; justify-content:center; gap:12px;}
-.testi-avatar{width:44px;height:44px;border-radius:50%;background:var(--ink);color:var(--brass-light);display:flex;align-items:center;justify-content:center;font-family:'Space Grotesk';font-weight:700;font-size:15px;}
+.testi-avatar{width:54px;height:54px;border-radius:50%;background:var(--ink);color:var(--brass-light);display:flex;align-items:center;justify-content:center;font-family:'Space Grotesk';font-weight:700;font-size:15px;overflow:hidden; border:2px solid var(--paper-2); box-shadow:0 4px 14px rgba(0,0,0,.12);}
+.testi-avatar img{width:100%;height:100%;object-fit:cover;}
 .testi-name{font-weight:600; font-size:14.5px;}
 .testi-role{font-size:13px; color:var(--slate);}
 .testi-dots{display:flex; justify-content:center; gap:8px; margin-top:34px;}
@@ -396,6 +520,26 @@ section{padding:110px 0;}
 .testi-dots button.active{background:var(--brass); width:22px; border-radius:6px;}
 .testi-arrows{position:absolute; top:40%; left:-56px; right:-56px; display:flex; justify-content:space-between;}
 @media(max-width:900px){.testi-arrows{display:none;}}
+
+/* ===================== GALLERY ===================== */
+.gallery-strip{
+  display:grid; grid-template-columns:repeat(4, 1fr); gap:10px; margin-top:30px;
+}
+.gallery-tile{
+  position:relative; aspect-ratio:1/1; overflow:hidden; background:var(--ink-2); cursor:pointer;
+}
+.gallery-tile img{width:100%;height:100%;object-fit:cover; transition:transform .6s var(--ease);}
+.gallery-tile:hover img{transform:scale(1.08);}
+.gallery-tile::after{
+  content:''; position:absolute; inset:0; background:linear-gradient(180deg, transparent 60%, rgba(0,0,0,.6));
+  opacity:0; transition:opacity .35s;
+}
+.gallery-tile:hover::after{opacity:1;}
+.gallery-tile .gallery-caption{
+  position:absolute; left:14px; bottom:14px; color:#fff; font-size:13px; font-weight:600;
+  font-family:'Space Grotesk',sans-serif; opacity:0; transform:translateY(8px); transition:all .35s var(--ease); z-index:2;
+}
+.gallery-tile:hover .gallery-caption{opacity:1; transform:translateY(0);}
 
 /* ===================== FAQ ===================== */
 .faq-item{border-bottom:1px solid var(--line);}
@@ -490,6 +634,7 @@ footer{background:#0c0f14; color:var(--slate-light); padding:80px 0 0;}
   .advantages{grid-template-columns:1fr;}
   .stats-row{grid-template-columns:repeat(2,1fr); row-gap:36px;}
   .footer-grid{grid-template-columns:1fr 1fr; row-gap:40px;}
+  .gallery-strip{grid-template-columns:repeat(3,1fr);}
 }
 @media(max-width:640px){
   .wrap{padding:0 20px;}
@@ -502,6 +647,8 @@ footer{background:#0c0f14; color:var(--slate-light); padding:80px 0 0;}
   .footer-grid{grid-template-columns:1fr;}
   .cta-row{flex-direction:column; align-items:stretch;}
   .cta-row .btn{width:100%;}
+  .gallery-strip{grid-template-columns:repeat(2,1fr);}
+  .about-features{grid-template-columns:1fr;}
 }
 </style>
 </head>
@@ -541,6 +688,7 @@ footer{background:#0c0f14; color:var(--slate-light); padding:80px 0 0;}
             <a href="#services"><svg viewBox="0 0 24 24"><path d="M3 20h18M5 20V10l7-6 7 6v10"/></svg>External Works</a>
           </div>
         </li>
+        <li><a class="nav-link" href="#projects">Projects</a></li>
         <li><a class="nav-link" href="#portfolio">Portfolio</a></li>
         <li><a class="nav-link" href="#faq">FAQ</a></li>
         <li><a class="nav-link" href="/contact">Contact</a></li>
@@ -564,9 +712,10 @@ footer{background:#0c0f14; color:var(--slate-light); padding:80px 0 0;}
     <li><a href="#home">Home</a></li>
     <li><a href="#about">About</a></li>
     <li><a href="#services">Services</a></li>
+    <li><a href="#projects">Projects</a></li>
     <li><a href="#portfolio">Portfolio</a></li>
     <li><a href="#faq">FAQ</a></li>
-    <li><a href="#contact">Contact</a></li>
+    <li><a href="/contact">Contact</a></li>
     <li><a href="#quote" class="btn btn-brass" style="margin-top:20px;font-size:16px;">Get Free Quote</a></li>
   </ul>
 </div>
@@ -577,7 +726,7 @@ footer{background:#0c0f14; color:var(--slate-light); padding:80px 0 0;}
   <div class="glow"></div>
   <div class="wrap hero-inner">
     <div>
-      <span class="eyebrow reveal in">West London · Fully Insured · 5-Year Guarantee</span>
+      <span class="eyebrow light reveal in">West London · Fully Insured · 5-Year Guarantee</span>
       <h1 class="reveal in" style="transition-delay:.08s">Your home,<br><span class="accent">rebuilt right</span> the first time.</h1>
       <p class="lede reveal in" style="transition-delay:.16s">We handle every part of construction, renovation and finishing work — from a single-room refresh to a full home transformation — with one accountable crew, transparent pricing, and craftsmanship that holds up.</p>
       <div class="cta-row reveal in" style="transition-delay:.24s">
@@ -596,37 +745,19 @@ footer{background:#0c0f14; color:var(--slate-light); padding:80px 0 0;}
       </div>
     </div>
 
-    <div class="blueprint-wrap reveal in" style="transition-delay:.2s">
-      <div class="blueprint-card">
-        <span class="corner tl"></span><span class="corner tr"></span><span class="corner bl"></span><span class="corner br"></span>
-        <svg class="house-svg" viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
-          <!-- roof -->
-          <polyline points="40,140 200,40 360,140" />
-          <!-- walls -->
-          <path d="M70,140 L70,260 L330,260 L330,140" />
-          <!-- chimney -->
-          <path d="M260,60 L260,100 M290,60 L290,100 M260,60 L290,60" />
-          <!-- door -->
-          <path d="M180,260 L180,190 Q200,178 220,190 L220,260" />
-          <!-- windows -->
-          <path d="M100,175 h50 v45 h-50 z M100,197.5 h50 M125,175 v45" />
-          <path d="M250,175 h50 v45 h-50 z M250,197.5 h50 M275,175 v45" />
-          <!-- extension outline (planned) -->
-          <path d="M330,200 L380,200 L380,260 L330,260" class="dim" />
-          <!-- fill accents -->
-          <path class="fill-brass" d="M180,260 L180,190 Q200,178 220,190 L220,260 Z" opacity="0" />
-          <!-- dimension lines -->
-          <line x1="70" y1="278" x2="330" y2="278" class="dim" />
-          <line x1="70" y1="272" x2="70" y2="284" class="dim" />
-          <line x1="330" y1="272" x2="330" y2="284" class="dim" />
-          <text x="185" y="292">8.40 M</text>
-          <text x="345" y="235">EXT.</text>
-        </svg>
-        <div class="blueprint-stats">
-          <div><b>12–16 wks</b>build timeline</div>
-          <div><b>Fixed</b>price quote</div>
-          <div><b>DBS</b>checked crew</div>
-        </div>
+    <div class="hero-bento reveal in" style="transition-delay:.2s">
+      <div class="hero-badge">ON SITE NOW · W6</div>
+      <div class="bento-img main">
+        <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=900&q=80" alt="Luxury modern interior renovation" loading="eager">
+        <span class="tag"><span class="dot"></span>FULL RENOVATION · CHISWICK</span>
+      </div>
+      <div class="bento-img">
+        <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?auto=format&fit=crop&w=600&q=80" alt="Modern kitchen fit-out" loading="eager">
+        <span class="tag"><span class="dot"></span>KITCHEN · EALING</span>
+      </div>
+      <div class="bento-img">
+        <img src="https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&w=600&q=80" alt="Loft conversion" loading="eager">
+        <span class="tag"><span class="dot"></span>LOFT · HOUNSLOW</span>
       </div>
     </div>
   </div>
@@ -650,6 +781,76 @@ footer{background:#0c0f14; color:var(--slate-light); padding:80px 0 0;}
   </div>
 </div>
 
+<!-- ===================== FEATURED PROJECTS (BENTO) ===================== -->
+<section id="projects" style="background:var(--paper-2);">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Featured projects</span>
+      <h2>Recent work across West London.</h2>
+      <p>From full home renovations to single-room refreshes — a small selection of completed jobs. Drag the portfolio slider below for the full before-and-after breakdown.</p>
+    </div>
+    <div class="projects-bento reveal">
+      <a href="#portfolio" class="bento-tile t1">
+        <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1100&q=80" alt="Rear extension project" loading="lazy">
+        <span class="tile-corner">PROJECT 01</span>
+        <div class="tile-overlay">
+          <span class="tile-cat">House Extension</span>
+          <h3>Full-width rear extension, Chiswick</h3>
+          <div class="tile-meta"><span>14 wks</span><span class="dot"></span><span>£££</span><span class="dot"></span><span>2025</span></div>
+        </div>
+      </a>
+      <a href="#portfolio" class="bento-tile t2">
+        <img src="https://images.unsplash.com/photo-1600566753086-00f18fe6ba6a?auto=format&fit=crop&w=700&q=80" alt="Modern kitchen" loading="lazy">
+        <span class="tile-corner">02</span>
+        <div class="tile-overlay">
+          <span class="tile-cat">Kitchen</span>
+          <h3>Open-plan kitchen refit, Ealing</h3>
+        </div>
+      </a>
+      <a href="#portfolio" class="bento-tile t3">
+        <img src="https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?auto=format&fit=crop&w=500&q=80" alt="Bathroom renovation" loading="lazy">
+        <span class="tile-corner">03</span>
+        <div class="tile-overlay">
+          <span class="tile-cat">Bathroom</span>
+          <h3>En-suite, Hounslow</h3>
+        </div>
+      </a>
+      <a href="#portfolio" class="bento-tile t4">
+        <img src="https://images.unsplash.com/photo-1600210491892-03d54c0aaf87?auto=format&fit=crop&w=700&q=80" alt="Living space" loading="lazy">
+        <span class="tile-corner">04</span>
+        <div class="tile-overlay">
+          <span class="tile-cat">Renovation</span>
+          <h3>Living & dining refit, Richmond</h3>
+        </div>
+      </a>
+      <a href="#portfolio" class="bento-tile t5">
+        <img src="https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=500&q=80" alt="Bedroom" loading="lazy">
+        <span class="tile-corner">05</span>
+        <div class="tile-overlay">
+          <span class="tile-cat">Loft</span>
+          <h3>Master suite, Twickenham</h3>
+        </div>
+      </a>
+      <a href="#portfolio" class="bento-tile t6">
+        <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1100&q=80" alt="Exterior renovation" loading="lazy">
+        <span class="tile-corner">06</span>
+        <div class="tile-overlay">
+          <span class="tile-cat">External</span>
+          <h3>Frontage & driveway rebuild, Isleworth</h3>
+        </div>
+      </a>
+      <a href="#portfolio" class="bento-tile t7">
+        <img src="https://images.unsplash.com/photo-1600607688969-a5bfcd646154?auto=format&fit=crop&w=1100&q=80" alt="Full home" loading="lazy">
+        <span class="tile-corner">07</span>
+        <div class="tile-overlay">
+          <span class="tile-cat">Full Home</span>
+          <h3>Complete renovation, Chiswick</h3>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
 <!-- ===================== SERVICES ===================== -->
 <section id="services">
   <div class="wrap">
@@ -662,70 +863,94 @@ footer{background:#0c0f14; color:var(--slate-light); padding:80px 0 0;}
   <div class="wrap">
     <div class="services-grid reveal stagger">
       <div class="service-card" style="--i:0">
-        <span class="svc-num">01</span>
-        <div class="svc-icon"><svg viewBox="0 0 24 24"><path d="M3 10l9-7 9 7M5 9v11h14V9M9 20v-6h6v6"/></svg></div>
-        <div class="svc-title">Loft Conversions</div>
-        <div class="svc-desc">Turn wasted roof space into a bedroom, office or bathroom that adds real resale value.</div>
-        <span class="svc-arrow">Learn more <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        <div class="svc-photo"><img src="https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&w=600&q=80" alt="" loading="lazy"></div>
+        <div class="svc-content">
+          <span class="svc-num">01</span>
+          <div class="svc-icon"><svg viewBox="0 0 24 24"><path d="M3 10l9-7 9 7M5 9v11h14V9M9 20v-6h6v6"/></svg></div>
+          <div class="svc-title">Loft Conversions</div>
+          <div class="svc-desc">Turn wasted roof space into a bedroom, office or bathroom that adds real resale value.</div>
+          <span class="svc-arrow">Learn more <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </div>
       </div>
       <div class="service-card" style="--i:1">
-        <span class="svc-num">02</span>
-        <div class="svc-icon"><svg viewBox="0 0 24 24"><path d="M4 21V9l8-6 8 6v12M9 21v-6h6v6"/></svg></div>
-        <div class="svc-title">House Extensions</div>
-        <div class="svc-desc">Single and double-storey extensions designed to extend your living space, not your stress.</div>
-        <span class="svc-arrow">Learn more <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        <div class="svc-photo"><img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=600&q=80" alt="" loading="lazy"></div>
+        <div class="svc-content">
+          <span class="svc-num">02</span>
+          <div class="svc-icon"><svg viewBox="0 0 24 24"><path d="M4 21V9l8-6 8 6v12M9 21v-6h6v6"/></svg></div>
+          <div class="svc-title">House Extensions</div>
+          <div class="svc-desc">Single and double-storey extensions designed to extend your living space, not your stress.</div>
+          <span class="svc-arrow">Learn more <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </div>
       </div>
       <div class="service-card" style="--i:2">
-        <span class="svc-num">03</span>
-        <div class="svc-icon"><svg viewBox="0 0 24 24"><path d="M3 21h18M6 21V8l6-4 6 4v13M10 21v-5h4v5"/></svg></div>
-        <div class="svc-title">Building & Construction</div>
-        <div class="svc-desc">Structural work, groundworks and new-builds handled by one accountable team from footings up.</div>
-        <span class="svc-arrow">Learn more <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        <div class="svc-photo"><img src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=600&q=80" alt="" loading="lazy"></div>
+        <div class="svc-content">
+          <span class="svc-num">03</span>
+          <div class="svc-icon"><svg viewBox="0 0 24 24"><path d="M3 21h18M6 21V8l6-4 6 4v13M10 21v-5h4v5"/></svg></div>
+          <div class="svc-title">Building & Construction</div>
+          <div class="svc-desc">Structural work, groundworks and new-builds handled by one accountable team from footings up.</div>
+          <span class="svc-arrow">Learn more <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </div>
       </div>
       <div class="service-card" style="--i:3">
-        <span class="svc-num">04</span>
-        <div class="svc-icon"><svg viewBox="0 0 24 24"><path d="M4 4h16v16H4zM4 12h16M12 4v16"/></svg></div>
-        <div class="svc-title">Interior Renovation</div>
-        <div class="svc-desc">Full internal refits — plastering, flooring, joinery — finished to a standard that shows.</div>
-        <span class="svc-arrow">Learn more <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        <div class="svc-photo"><img src="https://images.unsplash.com/photo-1600210491892-03d54c0aaf87?auto=format&fit=crop&w=600&q=80" alt="" loading="lazy"></div>
+        <div class="svc-content">
+          <span class="svc-num">04</span>
+          <div class="svc-icon"><svg viewBox="0 0 24 24"><path d="M4 4h16v16H4zM4 12h16M12 4v16"/></svg></div>
+          <div class="svc-title">Interior Renovation</div>
+          <div class="svc-desc">Full internal refits — plastering, flooring, joinery — finished to a standard that shows.</div>
+          <span class="svc-arrow">Learn more <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </div>
       </div>
       <div class="service-card" style="--i:4">
-        <span class="svc-num">05</span>
-        <div class="svc-icon"><svg viewBox="0 0 24 24"><path d="M13 2L4 14h6l-1 8 9-12h-6l1-8z"/></svg></div>
-        <div class="svc-title">Electrical Works</div>
-        <div class="svc-desc">Certified rewiring, consumer units and lighting design — signed off and fully compliant.</div>
-        <span class="svc-arrow">Learn more <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        <div class="svc-photo"><img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?auto=format&fit=crop&w=600&q=80" alt="" loading="lazy"></div>
+        <div class="svc-content">
+          <span class="svc-num">05</span>
+          <div class="svc-icon"><svg viewBox="0 0 24 24"><path d="M13 2L4 14h6l-1 8 9-12h-6l1-8z"/></svg></div>
+          <div class="svc-title">Kitchens & Bathrooms</div>
+          <div class="svc-desc">Design-led kitchen and bathroom fit-outs, from layout planning to the final tile.</div>
+          <span class="svc-arrow">Learn more <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </div>
       </div>
       <div class="service-card" style="--i:5">
-        <span class="svc-num">06</span>
-        <div class="svc-icon"><svg viewBox="0 0 24 24"><path d="M12 2s6 6.5 6 11.5a6 6 0 01-12 0C6 8.5 12 2 12 2z"/></svg></div>
-        <div class="svc-title">Plumbing & Heating</div>
-        <div class="svc-desc">Bathroom plumbing, boiler installs and heating systems that are built to just work.</div>
-        <span class="svc-arrow">Learn more <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        <div class="svc-photo"><img src="https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?auto=format&fit=crop&w=600&q=80" alt="" loading="lazy"></div>
+        <div class="svc-content">
+          <span class="svc-num">06</span>
+          <div class="svc-icon"><svg viewBox="0 0 24 24"><path d="M12 2s6 6.5 6 11.5a6 6 0 01-12 0C6 8.5 12 2 12 2z"/></svg></div>
+          <div class="svc-title">Plumbing & Heating</div>
+          <div class="svc-desc">Bathroom plumbing, boiler installs and heating systems that are built to just work.</div>
+          <span class="svc-arrow">Learn more <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </div>
       </div>
       <div class="service-card" style="--i:6">
-        <span class="svc-num">07</span>
-        <div class="svc-icon"><svg viewBox="0 0 24 24"><path d="M4 10h16v10H4zM8 10V6a4 4 0 018 0v4M4 15h16"/></svg></div>
-        <div class="svc-title">Kitchens & Bathrooms</div>
-        <div class="svc-desc">Design-led kitchen and bathroom fit-outs, from layout planning to the final tile.</div>
-        <span class="svc-arrow">Learn more <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        <div class="svc-photo"><img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=600&q=80" alt="" loading="lazy"></div>
+        <div class="svc-content">
+          <span class="svc-num">07</span>
+          <div class="svc-icon"><svg viewBox="0 0 24 24"><path d="M4 10h16v10H4zM8 10V6a4 4 0 018 0v4M4 15h16"/></svg></div>
+          <div class="svc-title">Electrical Works</div>
+          <div class="svc-desc">Certified rewiring, consumer units and lighting design — signed off and fully compliant.</div>
+          <span class="svc-arrow">Learn more <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </div>
       </div>
       <div class="service-card" style="--i:7">
-        <span class="svc-num">08</span>
-        <div class="svc-icon"><svg viewBox="0 0 24 24"><path d="M3 20h18M5 20V10l7-6 7 6v10M9 20v-5h6v5"/></svg></div>
-        <div class="svc-title">External Works</div>
-        <div class="svc-desc">Driveways, patios, roofing and render — the finishing touches that frame the whole job.</div>
-        <span class="svc-arrow">Learn more <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        <div class="svc-photo"><img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=600&q=80" alt="" loading="lazy"></div>
+        <div class="svc-content">
+          <span class="svc-num">08</span>
+          <div class="svc-icon"><svg viewBox="0 0 24 24"><path d="M3 20h18M5 20V10l7-6 7 6v10M9 20v-5h6v5"/></svg></div>
+          <div class="svc-title">External Works</div>
+          <div class="svc-desc">Driveways, patios, roofing and render — the finishing touches that frame the whole job.</div>
+          <span class="svc-arrow">Learn more <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ===================== ABOUT / ADVANTAGES ===================== -->
+<!-- ===================== ABOUT / ADVANTAGES (with image) ===================== -->
 <section class="section-dark" id="about">
   <div class="wrap">
     <div class="section-head reveal">
-      <span class="eyebrow">Why homeowners choose us</span>
+      <span class="eyebrow light">Why homeowners choose us</span>
       <h2>Experience you can trust, pricing you can plan around.</h2>
       <p>Founded on hands-on experience across every area of construction — we're hardworking, reliable, and genuinely invested in getting each job right.</p>
     </div>
@@ -753,6 +978,37 @@ footer{background:#0c0f14; color:var(--slate-light); padding:80px 0 0;}
       <div class="stat-box" style="--i:3"><div class="stat-num" data-count="5" data-suffix="yr">0</div><div class="stat-label">WORKMANSHIP GUARANTEE</div></div>
     </div>
     <p style="font-size:11.5px;color:var(--slate-light);margin-top:24px;font-family:'JetBrains Mono',monospace;">*Placeholder figures — swap in your real project count, years trading and review data before launch.</p>
+
+    <div class="about-strip reveal">
+      <div class="about-img">
+        <img src="https://images.unsplash.com/photo-1581094271901-8022df4466f9?auto=format&fit=crop&w=900&q=80" alt="MaxMark team on site reviewing plans">
+        <div class="img-tag"><span class="pulse-dot"></span> ON SITE TODAY · W6</div>
+      </div>
+      <div class="about-copy">
+        <span class="eyebrow light">A TEAM, NOT A SUB-CONTRACTOR CHAIN</span>
+        <h3>One accountable crew, on every project.</h3>
+        <p>We never disappear after the contract's signed. The same project lead runs your job from first survey to final snagging — backed by our in-house team of qualified trades.</p>
+        <p>That means no miscommunication, no chasing, and no surprise invoices. Just one number to call, one team to trust, and a build you'll be proud to show off.</p>
+        <div class="about-features">
+          <div class="about-feature">
+            <div class="af-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 12l2 2 4-4M12 22s8-4 8-11V5l-8-3-8 3v6c0 7 8 11 8 11z"/></svg></div>
+            <div><strong>Fully Insured</strong><span>£2m public liability cover</span></div>
+          </div>
+          <div class="about-feature">
+            <div class="af-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M9 12l2 2 4-4"/></svg></div>
+            <div><strong>5-Year Guarantee</strong><span>On every job we complete</span></div>
+          </div>
+          <div class="about-feature">
+            <div class="af-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 21h18M6 21V8l6-4 6 4v13"/></svg></div>
+            <div><strong>Certified Trades</strong><span>NICEIC · Gas Safe · FMB</span></div>
+          </div>
+          <div class="about-feature">
+            <div class="af-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 8v4l3 2M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg></div>
+            <div><strong>Fixed-Price Quotes</strong><span>No surprise invoices, ever</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -768,6 +1024,7 @@ footer{background:#0c0f14; color:var(--slate-light); padding:80px 0 0;}
       <div class="process-item reveal">
         <div class="process-line"></div>
         <div class="process-num mono">01</div>
+        <div class="process-thumb"><img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=200&q=80" alt="" loading="lazy"></div>
         <div class="process-body">
           <h3>Free consultation</h3>
           <p>We visit your property, listen to what you actually want, and talk through what's realistic — no obligation, no pressure.</p>
@@ -776,6 +1033,7 @@ footer{background:#0c0f14; color:var(--slate-light); padding:80px 0 0;}
       <div class="process-item reveal">
         <div class="process-line"></div>
         <div class="process-num mono">02</div>
+        <div class="process-thumb"><img src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=200&q=80" alt="" loading="lazy"></div>
         <div class="process-body">
           <h3>Design & fixed quote</h3>
           <p>You get a clear scope of works and a fixed-price quote before anything starts — the number you agree is the number you pay.</p>
@@ -784,6 +1042,7 @@ footer{background:#0c0f14; color:var(--slate-light); padding:80px 0 0;}
       <div class="process-item reveal">
         <div class="process-line"></div>
         <div class="process-num mono">03</div>
+        <div class="process-thumb"><img src="https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?auto=format&fit=crop&w=200&q=80" alt="" loading="lazy"></div>
         <div class="process-body">
           <h3>Build</h3>
           <p>One dedicated project lead, a fixed crew, and regular progress updates — you always know exactly where the job stands.</p>
@@ -792,6 +1051,7 @@ footer{background:#0c0f14; color:var(--slate-light); padding:80px 0 0;}
       <div class="process-item reveal">
         <div class="process-line"></div>
         <div class="process-num mono">04</div>
+        <div class="process-thumb"><img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=200&q=80" alt="" loading="lazy"></div>
         <div class="process-body">
           <h3>Handover & guarantee</h3>
           <p>A full sign-off walkthrough, snagging resolved before we leave, and every job backed by a 5-year workmanship guarantee.</p>
@@ -816,12 +1076,16 @@ footer{background:#0c0f14; color:var(--slate-light); padding:80px 0 0;}
     </div>
     <div class="compare-wrap reveal" id="compareWrap">
       <div class="compare-panel before">
-        <div class="sketch-lines"><svg viewBox="0 0 400 225"><path d="M20 200 L20 60 L200 20 L380 60 L380 200 M80 200 V120 H160 V200 M240 200 V90 H340 V200"/></svg></div>
+        <div class="img-fill before">
+          <img id="beforeImg" src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=1400&q=80" alt="Before" loading="lazy">
+        </div>
         <span class="tag">BEFORE</span>
         <h4 id="beforeLabel">Unused loft space</h4>
       </div>
       <div class="compare-panel after" id="afterPanel">
-        <div class="sketch-lines"><svg viewBox="0 0 400 225"><path d="M20 200 L20 60 L200 20 L380 60 L380 200 M80 200 V120 H160 V200 M240 200 V90 H340 V200 M100 60 L100 20 M300 60 L300 20"/></svg></div>
+        <div class="img-fill after">
+          <img id="afterImg" src="https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&w=1400&q=80" alt="After" loading="lazy">
+        </div>
         <span class="tag">AFTER — MAXMARK</span>
         <h4 id="afterLabel">Bedroom + en-suite with dormer</h4>
       </div>
@@ -836,12 +1100,26 @@ footer{background:#0c0f14; color:var(--slate-light); padding:80px 0 0;}
   </div>
 </section>
 
+<!-- ===================== FULL-BLEED IMAGE BANNER ===================== -->
+<section class="image-banner">
+  <div class="bg-img"><img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1800&q=80" alt="" loading="lazy"></div>
+  <div class="wrap">
+    <span class="eyebrow light" style="justify-content:center;color:var(--brass-light);">DESIGN · BUILD · DELIVER</span>
+    <h2>One team. Every trade. Zero hand-offs.</h2>
+    <p>From the first site visit to the final tile — every step is handled by our in-house crew, with one project lead and one fixed price.</p>
+    <div class="cta-row">
+      <a href="#quote" class="btn btn-brass">Get my free quote <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="tel:+447397087600" class="btn btn-outline">Call 07397 087600</a>
+    </div>
+  </div>
+</section>
+
 <!-- ===================== QUOTE CALCULATOR ===================== -->
 <section class="quote-section" id="quote">
   <div class="grid-bg2"></div>
   <div class="wrap" style="position:relative;z-index:2;">
     <div class="section-head center reveal" style="margin-left:auto;margin-right:auto;">
-      <span class="eyebrow" style="justify-content:center;">Instant estimate</span>
+      <span class="eyebrow light" style="justify-content:center;">Instant estimate</span>
       <h2 style="color:var(--paper-2);">Get a ballpark price in 60 seconds.</h2>
       <p style="color:var(--slate-light);">Answer three quick questions for an indicative range — then book a free site visit for an exact fixed quote.</p>
     </div>
@@ -974,17 +1252,17 @@ footer{background:#0c0f14; color:var(--slate-light); padding:80px 0 0;}
           <div class="testi-card">
             <div class="stars">★★★★★</div>
             <p class="quote">"They turned our loft into an extra bedroom in ten weeks, on the exact price they quoted. No excuses, no delays — just showed up and got on with it."</p>
-            <div class="testi-meta"><div class="testi-avatar">SH</div><div><div class="testi-name">S. Hughes</div><div class="testi-role">Loft Conversion, Hounslow</div></div></div>
+            <div class="testi-meta"><div class="testi-avatar"><img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=120&q=80" alt="Sarah H"></div><div><div class="testi-name">S. Hughes</div><div class="testi-role">Loft Conversion, Hounslow</div></div></div>
           </div>
           <div class="testi-card">
             <div class="stars">★★★★★</div>
             <p class="quote">"Communication was the difference. We always knew what stage the extension was at and never had to chase for an update."</p>
-            <div class="testi-meta"><div class="testi-avatar">RP</div><div><div class="testi-name">R. Patel</div><div class="testi-role">Rear Extension, Ealing</div></div></div>
+            <div class="testi-meta"><div class="testi-avatar"><img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=120&q=80" alt="Raj P"></div><div><div class="testi-name">R. Patel</div><div class="testi-role">Rear Extension, Ealing</div></div></div>
           </div>
           <div class="testi-card">
             <div class="stars">★★★★★</div>
             <p class="quote">"Fair pricing, tidy site every day, and the finish on the kitchen tiling is honestly better than I pictured. Already booked them for the bathroom."</p>
-            <div class="testi-meta"><div class="testi-avatar">MT</div><div><div class="testi-name">M. Thompson</div><div class="testi-role">Kitchen Refit, Chiswick</div></div></div>
+            <div class="testi-meta"><div class="testi-avatar"><img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&w=120&q=80" alt="Maya T"></div><div><div class="testi-name">M. Thompson</div><div class="testi-role">Kitchen Refit, Chiswick</div></div></div>
           </div>
         </div>
       </div>
@@ -993,8 +1271,53 @@ footer{background:#0c0f14; color:var(--slate-light); padding:80px 0 0;}
   </div>
 </section>
 
+<!-- ===================== GALLERY STRIP ===================== -->
+<section style="background:var(--paper-2);">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">On the tools</span>
+      <h2>A closer look at the work.</h2>
+      <p>Snapshots from current and recent sites — replace with your own photography as jobs complete.</p>
+    </div>
+    <div class="gallery-strip reveal">
+      <a href="#portfolio" class="gallery-tile">
+        <img src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=500&q=80" alt="Construction site" loading="lazy">
+        <span class="gallery-caption">Site prep, W6</span>
+      </a>
+      <a href="#portfolio" class="gallery-tile">
+        <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=500&q=80" alt="Tools and materials" loading="lazy">
+        <span class="gallery-caption">On the tools</span>
+      </a>
+      <a href="#portfolio" class="gallery-tile">
+        <img src="https://images.unsplash.com/photo-1572883454114-1cf0031ede2a?auto=format&fit=crop&w=500&q=80" alt="Workers reviewing plans" loading="lazy">
+        <span class="gallery-caption">Planning the build</span>
+      </a>
+      <a href="#portfolio" class="gallery-tile">
+        <img src="https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?auto=format&fit=crop&w=500&q=80" alt="Construction" loading="lazy">
+        <span class="gallery-caption">Structural work</span>
+      </a>
+      <a href="#portfolio" class="gallery-tile">
+        <img src="https://images.unsplash.com/photo-1556909114-44e3e70034e2?auto=format&fit=crop&w=500&q=80" alt="Kitchen fit-out" loading="lazy">
+        <span class="gallery-caption">Kitchen fit-out</span>
+      </a>
+      <a href="#portfolio" class="gallery-tile">
+        <img src="https://images.unsplash.com/photo-1620626011761-996317b8d101?auto=format&fit=crop&w=500&q=80" alt="Bathroom" loading="lazy">
+        <span class="gallery-caption">Bathroom tiling</span>
+      </a>
+      <a href="#portfolio" class="gallery-tile">
+        <img src="https://images.unsplash.com/photo-1600210492493-0946911123ea?auto=format&fit=crop&w=500&q=80" alt="Interior finish" loading="lazy">
+        <span class="gallery-caption">Snagging & finish</span>
+      </a>
+      <a href="#portfolio" class="gallery-tile">
+        <img src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=500&q=80" alt="Completed home" loading="lazy">
+        <span class="gallery-caption">Handover day</span>
+      </a>
+    </div>
+  </div>
+</section>
+
 <!-- ===================== FAQ ===================== -->
-<section id="faq" style="background:var(--paper-2);">
+<section id="faq">
   <div class="wrap" style="max-width:820px;">
     <div class="section-head reveal">
       <span class="eyebrow">Common questions</span>
@@ -1028,7 +1351,7 @@ footer{background:#0c0f14; color:var(--slate-light); padding:80px 0 0;}
 <!-- ===================== FINAL CTA ===================== -->
 <section class="final-cta" id="contact">
   <div class="wrap final-cta-inner">
-    <span class="eyebrow reveal" style="justify-content:center;">Ready when you are</span>
+    <span class="eyebrow light reveal" style="justify-content:center;">Ready when you are</span>
     <h2 class="reveal">Let's put a fixed price on your project.</h2>
     <p class="reveal">Book a free, no-obligation site visit — most homeowners get a written quote within 48 hours.</p>
     <div class="cta-row reveal">
@@ -1059,6 +1382,7 @@ footer{background:#0c0f14; color:var(--slate-light); padding:80px 0 0;}
         <ul>
           <li><a href="#home">Home</a></li>
           <li><a href="#about">About us</a></li>
+          <li><a href="#projects">Projects</a></li>
           <li><a href="#portfolio">Portfolio</a></li>
           <li><a href="#faq">FAQ</a></li>
           <li><a href="/contact">Contact</a></li>
@@ -1084,7 +1408,7 @@ footer{background:#0c0f14; color:var(--slate-light); padding:80px 0 0;}
       </div>
     </div>
     <div class="footer-bottom">
-      <span>MaxMark Builders©. All rights reserved. 2026</span>
+      <span>© MaxMark Builders 2026. All rights reserved.</span>
       <div style="display:flex;gap:20px;">
         <a href="#">Privacy Policy</a>
         <a href="#">Cookie Settings</a>
@@ -1126,7 +1450,7 @@ navDrawer.querySelectorAll('a').forEach(a => a.addEventListener('click', () => n
 const revealEls = document.querySelectorAll('.reveal');
 const io = new IntersectionObserver((entries) => {
   entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
-}, { threshold:0.15 });
+}, { threshold:0.12 });
 revealEls.forEach(el => io.observe(el));
 
 /* stagger index for children */
@@ -1138,7 +1462,7 @@ document.querySelectorAll('.stagger').forEach(parent => {
 document.querySelectorAll('.process-item').forEach(el => {
   const obs = new IntersectionObserver((entries) => {
     entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
-  }, { threshold:0.5 });
+  }, { threshold:0.4 });
   obs.observe(el);
 });
 
@@ -1166,8 +1490,6 @@ const counterIO = new IntersectionObserver((entries) => {
 }, { threshold:0.6 });
 counters.forEach(c => counterIO.observe(c));
 
-/* ---------- Marquee duplicate for seamless loop (already duplicated in HTML) ---------- */
-
 /* ---------- Before / After slider ---------- */
 const compareWrap = document.getElementById('compareWrap');
 const afterPanel = document.getElementById('afterPanel');
@@ -1186,9 +1508,15 @@ window.addEventListener('pointermove', (e) => { if (dragging) setSlide(e.clientX
 compareWrap.addEventListener('click', (e) => setSlide(e.clientX));
 
 const portfolioData = {
-  loft: { before:'Unused loft space', after:'Bedroom + en-suite with dormer' },
-  kitchen: { before:'Dated, closed-off kitchen', after:'Open-plan kitchen-diner' },
-  ext: { before:'Cramped rear reception', after:'Full-width kitchen extension' }
+  loft: { before:'Unused loft space', after:'Bedroom + en-suite with dormer',
+          beforeImg:'https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=1400&q=80',
+          afterImg:'https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&w=1400&q=80' },
+  kitchen: { before:'Dated, closed-off kitchen', after:'Open-plan kitchen-diner',
+          beforeImg:'https://images.unsplash.com/photo-1556910103-1c02745aae4d?auto=format&fit=crop&w=1400&q=80',
+          afterImg:'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?auto=format&fit=crop&w=1400&q=80' },
+  ext: { before:'Cramped rear reception', after:'Full-width kitchen extension',
+          beforeImg:'https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=1400&q=80',
+          afterImg:'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1400&q=80' }
 };
 document.querySelectorAll('.ptab').forEach(tab => {
   tab.addEventListener('click', () => {
@@ -1197,6 +1525,8 @@ document.querySelectorAll('.ptab').forEach(tab => {
     const d = portfolioData[tab.dataset.target];
     document.getElementById('beforeLabel').textContent = d.before;
     document.getElementById('afterLabel').textContent = d.after;
+    document.getElementById('beforeImg').src = d.beforeImg;
+    document.getElementById('afterImg').src = d.afterImg;
     setSlide(compareWrap.getBoundingClientRect().left + compareWrap.getBoundingClientRect().width/2);
   });
 });
