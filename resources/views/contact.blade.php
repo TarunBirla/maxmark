@@ -304,6 +304,7 @@ footer{background:#0c0f14; color:var(--slate-light); padding:80px 0 0;}
           </div>
         </li>
         <li><a class="nav-link" href="/#portfolio">Portfolio</a></li>
+        <li><a class="nav-link" href="/#projects">Projects</a></li>
         <li><a class="nav-link" href="/#faq">FAQ</a></li>
         <li><a class="nav-link" href="/contact">Contact</a></li>
       </ul>
@@ -327,6 +328,7 @@ footer{background:#0c0f14; color:var(--slate-light); padding:80px 0 0;}
     <li><a href="/#about">About</a></li>
     <li><a href="/#services">Services</a></li>
     <li><a href="/#portfolio">Portfolio</a></li>
+    <li><a href="/#projects">Projects</a></li>
     <li><a href="/#faq">FAQ</a></li>
     <li><a href="/contact">Contact</a></li>
   </ul>
