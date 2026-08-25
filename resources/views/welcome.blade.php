@@ -1204,22 +1204,30 @@ footer{background:#0c0f14; color:var(--slate-light); padding:80px 0 0;}
 
       <!-- STEP 4: RESULT -->
       <div class="quote-step" data-step="4">
-        <div class="quote-result">
-          <span class="step-label" style="justify-content:center;display:flex;">YOUR ESTIMATE</span>
-          <h3 id="resultTitle">Loft Conversion — Small</h3>
-          <div class="range" id="resultRange">£35,000 – £45,000</div>
-          <p class="caveat">This is an indicative range based on typical West London jobs, not a fixed quote. Final pricing depends on your property, materials and specification — confirmed after a free site visit.</p>
-          <div class="contact-fields">
-            <div class="field"><label>FIRST NAME</label><input type="text" id="quoteFirstName" placeholder="Jane" required></div>
-            <div class="field"><label>PHONE</label><input type="tel" id="quotePhone" placeholder="07xxx xxxxxx" required></div>
-            <div class="field full"><label>EMAIL</label><input type="email" id="quoteEmail" placeholder="you@email.com" required></div>
-            <div class="field full"><label>POSTCODE</label><input type="text" id="quotePostcode" placeholder="e.g. TW3 1AB"></div>
+        <form id="quoteForm" action="{{ route('quote.submit') }}" method="POST" onsubmit="submitQuote(event)">
+          @csrf
+          <input type="hidden" name="service" id="quoteHiddenService">
+          <input type="hidden" name="size" id="quoteHiddenSize">
+          <input type="hidden" name="time" id="quoteHiddenTime">
+          <input type="hidden" name="estimate" id="quoteHiddenEstimate">
+
+          <div class="quote-result">
+            <span class="step-label" style="justify-content:center;display:flex;">YOUR ESTIMATE</span>
+            <h3 id="resultTitle">Loft Conversion — Small</h3>
+            <div class="range" id="resultRange">£35,000 – £45,000</div>
+            <p class="caveat">This is an indicative range based on typical West London jobs, not a fixed quote. Final pricing depends on your property, materials and specification — confirmed after a free site visit.</p>
+            <div class="contact-fields">
+              <div class="field"><label>FIRST NAME</label><input type="text" id="quoteFirstName" name="first_name" placeholder="Jane" required></div>
+              <div class="field"><label>PHONE</label><input type="tel" id="quotePhone" name="phone" placeholder="07xxx xxxxxx" required></div>
+              <div class="field full"><label>EMAIL</label><input type="email" id="quoteEmail" name="email" placeholder="you@email.com" required></div>
+              <div class="field full"><label>POSTCODE</label><input type="text" id="quotePostcode" name="postcode" placeholder="e.g. TW3 1AB"></div>
+            </div>
+            <div class="quote-nav" style="justify-content:space-between;">
+              <button type="button" class="btn btn-outline" onclick="prevStep()">← Back</button>
+              <button type="submit" class="btn btn-signal" id="submitQuoteBtn">Send me my exact quote <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+            </div>
           </div>
-          <div class="quote-nav" style="justify-content:space-between;">
-            <button class="btn btn-outline" onclick="prevStep()">← Back</button>
-            <button class="btn btn-signal" id="submitQuoteBtn" onclick="submitQuote()">Send me my exact quote <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
-          </div>
-        </div>
+        </form>
       </div>
 
       <!-- STEP 5: THANK YOU -->
@@ -1581,7 +1589,9 @@ document.getElementById('timeOptions').addEventListener('click', (e) => {
     goToStep(4);
   }, 280);
 });
-function submitQuote() {
+function submitQuote(event) {
+  if (event) event.preventDefault();
+
   const firstNameInp = document.getElementById('quoteFirstName');
   const phoneInp = document.getElementById('quotePhone');
   const emailInp = document.getElementById('quoteEmail');
@@ -1609,6 +1619,15 @@ function submitQuote() {
   const estimateText = document.getElementById('resultRange')?.textContent || '';
   const csrfToken = document.querySelector('meta[name="csrf-token"]')?.getAttribute('content') || '';
 
+  const serviceVal = quoteState.serviceLabel || quoteState.service || 'Building Service';
+  const sizeVal = quoteState.sizeLabel || quoteState.size || '';
+  const timeVal = quoteState.time || '';
+
+  if (document.getElementById('quoteHiddenService')) document.getElementById('quoteHiddenService').value = serviceVal;
+  if (document.getElementById('quoteHiddenSize')) document.getElementById('quoteHiddenSize').value = sizeVal;
+  if (document.getElementById('quoteHiddenTime')) document.getElementById('quoteHiddenTime').value = timeVal;
+  if (document.getElementById('quoteHiddenEstimate')) document.getElementById('quoteHiddenEstimate').value = estimateText;
+
   fetch('/quote', {
     method: 'POST',
     headers: {
@@ -1621,9 +1640,9 @@ function submitQuote() {
       phone: phoneInp.value.trim(),
       email: emailInp.value.trim(),
       postcode: postcodeInp ? postcodeInp.value.trim() : '',
-      service: quoteState.serviceLabel || quoteState.service || 'Building Service',
-      size: quoteState.sizeLabel || quoteState.size || '',
-      time: quoteState.time || '',
+      service: serviceVal,
+      size: sizeVal,
+      time: timeVal,
       estimate: estimateText
     })
   })

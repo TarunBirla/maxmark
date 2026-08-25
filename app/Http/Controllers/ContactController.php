@@ -83,20 +83,18 @@ class ContactController extends Controller
 
             // 3. Send Confirmation Email to User
             Mail::to($validated['email'])->send(new UserConfirmationMail($validated));
-
-            return response()->json([
-                'success' => true,
-                'message' => 'Quote request saved and emails sent successfully.',
-                'quote_id' => $quoteRequest->id
-            ]);
         } catch (\Exception $e) {
             logger()->error('Quote submission email failed: ' . $e->getMessage());
+        }
 
+        if ($request->wantsJson() || $request->ajax()) {
             return response()->json([
-                'success' => true,
-                'message' => 'Quote request saved successfully.',
+                'success'  => true,
+                'message'  => 'Quote request saved successfully.',
                 'quote_id' => $quoteRequest->id
             ]);
         }
+
+        return back()->with('success', 'Thank you! Your quote request has been received.');
     }
 }
