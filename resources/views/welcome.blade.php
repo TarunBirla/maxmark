@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="csrf-token" content="{{ csrf_token() }}">
 <title>MaxMark Builders — Building & Renovation, Done Right</title>
 <meta name="description" content="Loft conversions, extensions, full renovations across West London. Free quote in 60 seconds, fully insured, 5-year guarantee.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -1633,9 +1634,11 @@ function submitQuote(event) {
     headers: {
       'Content-Type': 'application/json',
       'Accept': 'application/json',
-      'X-CSRF-TOKEN': csrfToken
+      'X-CSRF-TOKEN': csrfToken,
+      'X-Requested-With': 'XMLHttpRequest'
     },
     body: JSON.stringify({
+      _token: csrfToken,
       first_name: firstNameInp.value.trim(),
       phone: phoneInp.value.trim(),
       email: emailInp.value.trim(),
@@ -1646,7 +1649,12 @@ function submitQuote(event) {
       estimate: estimateText
     })
   })
-  .then(res => res.json())
+  .then(res => {
+    if (!res.ok) {
+      console.warn('Fetch response not ok, status:', res.status);
+    }
+    return res.json();
+  })
   .then(data => {
     goToStep(5);
   })
