@@ -982,7 +982,7 @@ footer{background:#0c0f14; color:var(--slate-light); padding:80px 0 0;}
 
     <div class="about-strip reveal">
       <div class="about-img">
-        <img src="https://images.unsplash.com/photo-1581094271901-8022df4466f9?auto=format&fit=crop&w=900&q=80" alt="MaxMark team on site reviewing plans">
+        <img src="/imgs.jpg" alt="MaxMark team on site reviewing plans">
         <div class="img-tag"><span class="pulse-dot"></span> ON SITE TODAY · W6</div>
       </div>
       <div class="about-copy">
