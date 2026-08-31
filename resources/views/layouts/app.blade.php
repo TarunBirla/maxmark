@@ -4,11 +4,11 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="csrf-token" content="{{ csrf_token() }}">
-<title>Contact Us — MaxMark Builders</title>
+<title>@yield('title', 'MaxMark Builders — Building & Renovation, Done Right')</title>
 <link rel="icon" type="image/png" href="{{ asset('logo.png') }}">
 <link rel="shortcut icon" type="image/png" href="{{ asset('logo.png') }}">
 <link rel="apple-touch-icon" href="{{ asset('logo.png') }}">
-<meta name="description" content="Get in touch with MaxMark Builders for a free quote or site visit on loft conversions, extensions, and renovations across West London.">
+<meta name="description" content="@yield('meta_description', 'Loft conversions, extensions, full renovations across West London. Free quote in 60 seconds, fully insured, 5-year guarantee.')">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -60,7 +60,16 @@ h1,h2,h3,h4{font-family:'Space Grotesk',sans-serif;font-weight:700;letter-spacin
   font-weight:500;
 }
 .eyebrow::before{content:'';width:22px;height:1px;background:var(--brass);}
+.eyebrow.light{color:var(--brass-light);}
+.eyebrow.light::before{background:var(--brass-light);}
+@media(prefers-reduced-motion:reduce){
+  *{animation-duration:0.01ms !important;animation-iteration-count:1 !important;transition-duration:0.01ms !important;scroll-behavior:auto !important;}
+}
 ::selection{background:var(--brass);color:var(--ink);}
+
+a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible{
+  outline:2px solid var(--brass); outline-offset:3px;
+}
 
 /* ===================== TOP UTILITY BAR ===================== */
 .utility-bar{
@@ -71,7 +80,7 @@ h1,h2,h3,h4{font-family:'Space Grotesk',sans-serif;font-weight:700;letter-spacin
   letter-spacing:0.02em;
 }
 .utility-bar .wrap{
-  display:flex; justify-content:space-between; align-items:center;
+  display:flex; justify-space-between:space-between; align-items:center;
   height:38px; gap:20px; flex-wrap:wrap;
 }
 .utility-bar .left{display:flex;align-items:center;gap:8px;color:var(--brass-light);}
@@ -165,68 +174,6 @@ nav.main-nav a.nav-link:hover::after{width:100%;}
 .nav-drawer a{font-family:'Space Grotesk'; font-size:26px; padding:14px 0; border-bottom:1px solid var(--line-dark); color:var(--paper-2);}
 .close-drawer{position:absolute; top:28px; right:28px; width:44px;height:44px; color:var(--paper-2);}
 
-/* ===================== HERO SECTION ===================== */
-.contact-hero{
-  background:var(--ink); color:var(--paper-2); padding:80px 0 60px; border-bottom:1px solid var(--line-dark);
-  position:relative; overflow:hidden;
-}
-.contact-hero .grid-bg{
-  position:absolute; inset:0;
-  background-image:linear-gradient(var(--line-dark) 1px, transparent 1px), linear-gradient(90deg, var(--line-dark) 1px, transparent 1px);
-  background-size:var(--grid-unit) var(--grid-unit); opacity:.4;
-}
-.contact-hero-inner{position:relative; z-index:2; text-align:center; max-width:680px; margin:0 auto;}
-.contact-hero h1{font-size:clamp(36px,4.5vw,56px); margin:18px 0 16px;}
-.contact-hero p{font-size:16.5px; color:var(--slate-light);}
-
-/* ===================== CONTACT FORM & CARDS ===================== */
-.contact-main{padding:80px 0;}
-.contact-grid{display:grid; grid-template-columns:1fr 1.6fr; gap:40px; align-items:start;}
-
-.info-cards{display:flex; flex-direction:column; gap:20px;}
-.info-card{
-  background:var(--ink-2); color:var(--paper-2); border:1px solid var(--line-dark); padding:30px; border-radius:2px;
-  display:flex; gap:20px; align-items:flex-start;
-}
-.info-card-icon{
-  width:48px; height:48px; border-radius:50%; background:rgba(184,134,59,.15); border:1px solid var(--brass);
-  display:flex; align-items:center; justify-content:center; color:var(--brass-light); flex-shrink:0;
-}
-.info-card-icon svg{width:22px; height:22px;}
-.info-card h3{font-size:12px; font-family:'JetBrains Mono',monospace; color:var(--brass-light); letter-spacing:.12em; text-transform:uppercase; margin-bottom:6px;}
-.info-card a, .info-card p{font-size:18px; font-weight:600; color:var(--paper-2); line-height:1.4;}
-.info-card a:hover{color:var(--brass-light);}
-
-.form-box{
-  background:var(--ink-2); border:1px solid var(--line-dark); padding:44px; color:var(--paper-2);
-  box-shadow:0 30px 60px rgba(0,0,0,.25);
-}
-.form-box h2{font-size:28px; margin-bottom:10px;}
-.form-box p{color:var(--slate-light); font-size:14.5px; margin-bottom:28px;}
-
-.alert-success{
-  background:rgba(95,191,123,.12); border:1px solid #5fbf7b; color:#5fbf7b; padding:16px 20px;
-  font-size:14px; border-radius:2px; margin-bottom:24px; font-weight:500;
-}
-.alert-error{
-  background:rgba(228,87,46,.12); border:1px solid var(--signal); color:#f0a68a; padding:16px 20px;
-  font-size:14px; border-radius:2px; margin-bottom:24px; font-weight:500;
-}
-
-.form-grid{display:grid; grid-template-columns:1fr 1fr; gap:20px; margin-bottom:20px;}
-.form-grid.full{grid-template-columns:1fr;}
-.form-group{display:flex; flex-direction:column; gap:8px;}
-.form-group label{font-family:'JetBrains Mono',monospace; font-size:11.5px; color:var(--brass-light); letter-spacing:.1em;}
-.form-group label span{color:var(--signal);}
-.form-group input, .form-group textarea{
-  background:rgba(18,22,29,.6); border:1px solid var(--line-dark); color:var(--paper-2);
-  padding:14px 16px; font-family:'Inter',sans-serif; font-size:14.5px; border-radius:2px; outline:none;
-  transition:border-color .25s;
-}
-.form-group input:focus, .form-group textarea:focus{border-color:var(--brass-light);}
-.form-group textarea{resize:vertical; min-height:130px;}
-.field-error{color:var(--signal); font-size:12px; font-weight:500;}
-
 /* ===================== FOOTER ===================== */
 footer{background:#0c0f14; color:var(--slate-light); padding:80px 0 0;}
 .footer-grid{display:grid; grid-template-columns:1.4fr 1fr 1fr 1.2fr; gap:40px; padding-bottom:60px; border-bottom:1px solid var(--line-dark);}
@@ -245,14 +192,6 @@ footer{background:#0c0f14; color:var(--slate-light); padding:80px 0 0;}
 .footer-bottom a{opacity:.7;}
 .footer-bottom a:hover{opacity:1;}
 
-.mobile-bar{
-  display:none; position:fixed; bottom:0; left:0; right:0; z-index:200; background:var(--ink); border-top:1px solid var(--line-dark);
-  padding:100px 14px 10px; gap:10px;
-}
-.mobile-bar a{flex:1; display:flex; flex-direction:column; align-items:center; gap:4px; font-size:10.5px; color:var(--paper-2); padding:6px 0; font-weight:600;}
-.mobile-bar a svg{width:19px;height:19px; stroke:var(--brass-light);}
-.mobile-bar a.primary{background:var(--brass); border-radius:8px; color:var(--ink);}
-
 .float-whatsapp{
   position:fixed; bottom:90px; right:26px; z-index:250; width:56px; height:56px;
   background:#25D366; color:#ffffff; border-radius:50%; display:flex; align-items:center; justify-content:center;
@@ -265,18 +204,16 @@ footer{background:#0c0f14; color:var(--slate-light); padding:80px 0 0;}
 @media(max-width:1080px){
   nav.main-nav{display:none;}
   .burger{display:flex; width:44px;height:44px; align-items:center; justify-content:center; color:var(--paper-2);}
-  .contact-grid{grid-template-columns:1fr;}
   .footer-grid{grid-template-columns:1fr 1fr; row-gap:40px;}
 }
 @media(max-width:640px){
   .wrap{padding:0 20px;}
-  .form-grid{grid-template-columns:1fr;}
   .footer-grid{grid-template-columns:1fr;}
-  .form-box{padding:30px 20px;}
   .float-whatsapp{bottom:78px; right:18px; width:50px; height:50px;}
   .float-whatsapp svg{width:26px; height:26px;}
 }
 </style>
+@stack('styles')
 </head>
 <body>
 
@@ -294,37 +231,36 @@ footer{background:#0c0f14; color:var(--slate-light); padding:80px 0 0;}
 <!-- ===================== HEADER ===================== -->
 <header class="site-header" id="siteHeader">
   <div class="wrap">
-    <a href="/" class="logo" aria-label="MaxMark Builders Home">
+    <a href="{{ route('home') }}" class="logo" aria-label="MaxMark Builders Home">
       <img src="{{ asset('logo.png') }}" alt="MaxMark Builders Logo">
     </a>
     <nav class="main-nav">
       <ul>
-        <li><a class="nav-link" href="/">Home</a></li>
-        <li><a class="nav-link" href="/#about">About</a></li>
+        <li><a class="nav-link" href="{{ route('home') }}">Home</a></li>
+        <li><a class="nav-link" href="{{ route('home') }}#about">About</a></li>
         <li class="has-mega">
-          <a class="nav-link" href="/#services">Services</a>
+          <a class="nav-link" href="{{ route('home') }}#services">Services</a>
           <div class="mega">
-            <a href="/#services"><svg viewBox="0 0 24 24"><path d="M3 10l9-7 9 7M5 9v11h14V9"/></svg>Loft Conversions</a>
-            <a href="/#services"><svg viewBox="0 0 24 24"><path d="M4 21V9l8-6 8 6v12M9 21v-6h6v6"/></svg>House Extensions</a>
-            <a href="/#services"><svg viewBox="0 0 24 24"><path d="M3 21h18M6 21V8l6-4 6 4v13"/></svg>Building & Construction</a>
-            <a href="/#services"><svg viewBox="0 0 24 24"><path d="M4 4h16v16H4zM4 12h16"/></svg>Interior Renovation</a>
-            <a href="/#services"><svg viewBox="0 0 24 24"><path d="M13 2L4 14h6l-1 8 9-12h-6l1-8z"/></svg>Electrical Works</a>
-            <a href="/#services"><svg viewBox="0 0 24 24"><path d="M12 2s6 6 6 11a6 6 0 01-12 0c0-5 6-11 6-11z"/></svg>Plumbing & Heating</a>
-            <a href="/#services"><svg viewBox="0 0 24 24"><path d="M4 10h16v10H4zM8 10V6a4 4 0 018 0v4"/></svg>Kitchens & Bathrooms</a>
-            <a href="/#services"><svg viewBox="0 0 24 24"><path d="M3 20h18M5 20V10l7-6 7 6v10"/></svg>External Works</a>
+            <a href="{{ route('services.show', 'loft-conversions') }}"><svg viewBox="0 0 24 24"><path d="M3 10l9-7 9 7M5 9v11h14V9"/></svg>Loft Conversions</a>
+            <a href="{{ route('services.show', 'house-extensions') }}"><svg viewBox="0 0 24 24"><path d="M4 21V9l8-6 8 6v12M9 21v-6h6v6"/></svg>House Extensions</a>
+            <a href="{{ route('services.show', 'building-construction') }}"><svg viewBox="0 0 24 24"><path d="M3 21h18M6 21V8l6-4 6 4v13"/></svg>Building & Construction</a>
+            <a href="{{ route('services.show', 'interior-renovation') }}"><svg viewBox="0 0 24 24"><path d="M4 4h16v16H4zM4 12h16"/></svg>Interior Renovation</a>
+            <a href="{{ route('services.show', 'kitchens-bathrooms') }}"><svg viewBox="0 0 24 24"><path d="M4 10h16v10H4zM8 10V6a4 4 0 018 0v4"/></svg>Kitchens & Bathrooms</a>
+            <a href="{{ route('services.show', 'plumbing-heating') }}"><svg viewBox="0 0 24 24"><path d="M12 2s6 6 6 11a6 6 0 01-12 0c0-5 6-11 6-11z"/></svg>Plumbing & Heating</a>
+            <a href="{{ route('services.show', 'electrical-works') }}"><svg viewBox="0 0 24 24"><path d="M13 2L4 14h6l-1 8 9-12h-6l1-8z"/></svg>Electrical Works</a>
+            <a href="{{ route('services.show', 'external-works') }}"><svg viewBox="0 0 24 24"><path d="M3 20h18M5 20V10l7-6 7 6v10"/></svg>External Works</a>
           </div>
         </li>
-        <li><a class="nav-link" href="/#portfolio">Portfolio</a></li>
-        <li><a class="nav-link" href="/#projects">Projects</a></li>
-        <li><a class="nav-link" href="/#faq">FAQ</a></li>
-        <li><a class="nav-link" href="/contact">Contact</a></li>
+        <li><a class="nav-link" href="{{ route('home') }}#portfolio">Portfolio</a></li>
+        <li><a class="nav-link" href="{{ route('home') }}#faq">FAQ</a></li>
+        <li><a class="nav-link" href="{{ route('contact.show') }}">Contact</a></li>
       </ul>
     </nav>
     <div class="header-actions">
       <a href="tel:+447397087600" class="icon-btn" aria-label="Call MaxMark Builders">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.13.96.36 1.9.68 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.91.32 1.85.55 2.81.68A2 2 0 0122 16.92z"/></svg>
       </a>
-      <a href="/#quote" class="btn btn-brass">Get Free Quote <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="{{ route('home') }}#quote" class="btn btn-brass">Get Free Quote <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
       <button class="burger" id="burgerBtn" aria-label="Open menu">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
       </button>
@@ -335,139 +271,25 @@ footer{background:#0c0f14; color:var(--slate-light); padding:80px 0 0;}
 <div class="nav-drawer" id="navDrawer">
   <button class="close-drawer" id="closeDrawer" aria-label="Close menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
   <ul>
-    <li><a href="/">Home</a></li>
-    <li><a href="/#about">About</a></li>
-    <li><a href="/#services">Services</a></li>
-    <li><a href="/#portfolio">Portfolio</a></li>
-    <li><a href="/#projects">Projects</a></li>
-    <li><a href="/#faq">FAQ</a></li>
-    <li><a href="/contact">Contact</a></li>
+    <li><a href="{{ route('home') }}">Home</a></li>
+    <li><a href="{{ route('home') }}#about">About</a></li>
+    <li><a href="{{ route('home') }}#services">Services</a></li>
+    <li><a href="{{ route('home') }}#portfolio">Portfolio</a></li>
+    <li><a href="{{ route('home') }}#faq">FAQ</a></li>
+    <li><a href="{{ route('contact.show') }}">Contact</a></li>
+    <li><a href="{{ route('home') }}#quote" class="btn btn-brass" style="margin-top:20px;font-size:16px;">Get Free Quote</a></li>
   </ul>
 </div>
 
-<!-- ===================== HERO SECTION ===================== -->
-<section class="contact-hero">
-  <div class="grid-bg"></div>
-  <div class="wrap contact-hero-inner">
-    <span class="eyebrow" style="justify-content:center;">Get In Touch</span>
-    <h1>Contact MaxMark Builders</h1>
-    <p>Have a construction inquiry, quote request, or question? Send us a message and our team will get back to you promptly.</p>
-  </div>
-</section>
-
-<!-- ===================== CONTACT FORM & CARDS ===================== -->
-<main class="contact-main">
-  <div class="wrap">
-    <div class="contact-grid">
-
-      <!-- Left Column: Info Cards -->
-      <div class="info-cards">
-        
-        <div class="info-card">
-          <div class="info-card-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 6l-10 7L2 6"/></svg>
-          </div>
-          <div>
-            <h3>EMAIL ADDRESS</h3>
-            <a href="mailto:maxmarkbuilders@gmail.com">maxmarkbuilders@gmail.com</a>
-          </div>
-        </div>
-
-        <div class="info-card">
-          <div class="info-card-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6A19.79 19.79 0 011.12 4.18 2 2 0 013.11 2h3a2 2 0 012 1.72c.13.96.36 1.9.68 2.81a2 2 0 01-.45 2.11L7.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.3 12.3 0 002.81.68A2 2 0 0122 16.92z"/></svg>
-          </div>
-          <div>
-            <h3>PHONE NUMBER</h3>
-            <a href="tel:+447397087600">+44 7397 087600</a>
-          </div>
-        </div>
-
-        <div class="info-card" style="background:var(--ink); border-color:var(--brass);">
-          <div class="info-card-icon" style="background:var(--brass); color:var(--ink);">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M21 10c0 6-9 12-9 12s-9-6-9-12a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
-          </div>
-          <div>
-            <h3>LOCATION & COVERAGE</h3>
-            <p style="font-size:15px; color:var(--paper-2); font-weight:400; line-height:1.6;">Serving West London & surrounding areas with high-end building & renovation work.</p>
-          </div>
-        </div>
-
-      </div>
-
-      <!-- Right Column: Form Box -->
-      <div class="form-box">
-        <h2>Send Us a Message</h2>
-        <p>Fill out the form below and both you and our team will receive an email confirmation.</p>
-
-        @if(session('success'))
-          <div class="alert-success">
-            ✓ {{ session('success') }}
-          </div>
-        @endif
-
-        @if(session('error'))
-          <div class="alert-error">
-            ✕ {{ session('error') }}
-          </div>
-        @endif
-
-        <form action="{{ route('contact.submit') }}" method="POST">
-          @csrf
-
-          <div class="form-grid">
-            <div class="form-group">
-              <label for="name">YOUR NAME <span>*</span></label>
-              <input type="text" name="name" id="name" value="{{ old('name') }}" placeholder="e.g. Jane Doe" required>
-              @error('name')<span class="field-error">{{ $message }}</span>@enderror
-            </div>
-
-            <div class="form-group">
-              <label for="email">EMAIL ADDRESS <span>*</span></label>
-              <input type="email" name="email" id="email" value="{{ old('email') }}" placeholder="e.g. you@email.com" required>
-              @error('email')<span class="field-error">{{ $message }}</span>@enderror
-            </div>
-          </div>
-
-          <div class="form-grid">
-            <div class="form-group">
-              <label for="phone">PHONE NUMBER <span>*</span></label>
-              <input type="tel" name="phone" id="phone" value="{{ old('phone') }}" placeholder="e.g. +44 7397 087600" required>
-              @error('phone')<span class="field-error">{{ $message }}</span>@enderror
-            </div>
-
-            <div class="form-group">
-              <label for="subject">SUBJECT</label>
-              <input type="text" name="subject" id="subject" value="{{ old('subject') }}" placeholder="e.g. Building Inquiry">
-              @error('subject')<span class="field-error">{{ $message }}</span>@enderror
-            </div>
-          </div>
-
-          <div class="form-grid full">
-            <div class="form-group">
-              <label for="message">MESSAGE <span>*</span></label>
-              <textarea name="message" id="message" placeholder="Write your message or project details here..." required>{{ old('message') }}</textarea>
-              @error('message')<span class="field-error">{{ $message }}</span>@enderror
-            </div>
-          </div>
-
-          <button type="submit" class="btn btn-signal" style="padding:15px 36px; font-size:15px; margin-top:10px; cursor:pointer;">
-            Submit Inquiry <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-          </button>
-
-        </form>
-      </div>
-
-    </div>
-  </div>
-</main>
+<!-- ===================== MAIN CONTENT ===================== -->
+@yield('content')
 
 <!-- ===================== FOOTER ===================== -->
 <footer>
   <div class="wrap">
     <div class="footer-grid">
       <div class="footer-brand">
-        <a href="/" class="footer-logo" aria-label="MaxMark Builders Home">
+        <a href="{{ route('home') }}" class="footer-logo" aria-label="MaxMark Builders Home">
           <img src="{{ asset('logo.png') }}" alt="MaxMark Builders Logo">
         </a>
         <p>Professional building & renovation services across West London — from single-room refreshes to full home transformations.</p>
@@ -480,21 +302,21 @@ footer{background:#0c0f14; color:var(--slate-light); padding:80px 0 0;}
       <div>
         <h4>NAVIGATE</h4>
         <ul>
-          <li><a href="/">Home</a></li>
-          <li><a href="/#about">About us</a></li>
-          <li><a href="/#portfolio">Portfolio</a></li>
-          <li><a href="/#faq">FAQ</a></li>
-          <li><a href="/contact">Contact</a></li>
+          <li><a href="{{ route('home') }}">Home</a></li>
+          <li><a href="{{ route('home') }}#about">About us</a></li>
+          <li><a href="{{ route('home') }}#portfolio">Portfolio</a></li>
+          <li><a href="{{ route('home') }}#faq">FAQ</a></li>
+          <li><a href="{{ route('contact.show') }}">Contact</a></li>
         </ul>
       </div>
       <div>
         <h4>SERVICES</h4>
         <ul>
-          <li><a href="/#services">Loft Conversions</a></li>
-          <li><a href="/#services">House Extensions</a></li>
-          <li><a href="/#services">Kitchens & Bathrooms</a></li>
-          <li><a href="/#services">Electrical Works</a></li>
-          <li><a href="/#services">Plumbing & Heating</a></li>
+          <li><a href="{{ route('services.show', 'loft-conversions') }}">Loft Conversions</a></li>
+          <li><a href="{{ route('services.show', 'house-extensions') }}">House Extensions</a></li>
+          <li><a href="{{ route('services.show', 'kitchens-bathrooms') }}">Kitchens & Bathrooms</a></li>
+          <li><a href="{{ route('services.show', 'electrical-works') }}">Electrical Works</a></li>
+          <li><a href="{{ route('services.show', 'plumbing-heating') }}">Plumbing & Heating</a></li>
         </ul>
       </div>
       <div>
@@ -538,5 +360,6 @@ navDrawer?.querySelectorAll('a').forEach(a => a.addEventListener('click', () => 
   </svg>
 </a>
 
+@stack('scripts')
 </body>
 </html>

@@ -325,7 +325,7 @@ section{padding:110px 0;}
 .services-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:var(--line); border:1px solid var(--line);}
 .service-card{
   background:var(--paper-2); padding:32px 26px; position:relative; overflow:hidden;
-  transition:background .35s var(--ease);
+  transition:background .35s var(--ease); display:block; text-decoration:none; color:inherit;
 }
 .service-card .svc-photo{
   position:absolute; inset:0; opacity:0; transition:opacity .5s var(--ease);
@@ -592,6 +592,15 @@ footer{background:#0c0f14; color:var(--slate-light); padding:80px 0 0;}
 .footer-bottom a:hover{opacity:1;}
 
 /* ===================== FLOATING ===================== */
+.float-whatsapp{
+  position:fixed; bottom:90px; right:26px; z-index:250; width:56px; height:56px;
+  background:#25D366; color:#ffffff; border-radius:50%; display:flex; align-items:center; justify-content:center;
+  box-shadow:0 8px 24px rgba(37,211,102,.45); transition:transform .3s var(--ease), box-shadow .3s var(--ease);
+  text-decoration:none;
+}
+.float-whatsapp:hover{transform:translateY(-3px) scale(1.06); box-shadow:0 12px 30px rgba(37,211,102,.6); color:#ffffff;}
+.float-whatsapp svg{width:30px; height:30px;}
+
 .float-cta{
   position:fixed; bottom:26px; right:26px; z-index:200; display:flex; align-items:center; gap:10px;
   background:var(--brass); color:var(--ink); padding:15px 22px; border-radius:40px; font-weight:600; font-size:14px;
@@ -611,7 +620,13 @@ footer{background:#0c0f14; color:var(--slate-light); padding:80px 0 0;}
 .mobile-bar a svg{width:19px;height:19px; stroke:var(--brass-light);}
 .mobile-bar a.primary{background:var(--brass); border-radius:8px; color:var(--ink);}
 .mobile-bar a.primary svg{stroke:var(--ink);}
-@media(max-width:900px){.mobile-bar{display:flex;} body{padding-bottom:64px;}}
+@media(max-width:900px){
+  .float-cta{display:none;}
+  .mobile-bar{display:flex;}
+  body{padding-bottom:64px;}
+  .float-whatsapp{bottom:78px; right:18px; width:50px; height:50px;}
+  .float-whatsapp svg{width:26px; height:26px;}
+}
 
 /* mobile nav drawer */
 .nav-drawer{
@@ -801,7 +816,7 @@ footer{background:#0c0f14; color:var(--slate-light); padding:80px 0 0;}
         </div>
       </a>
       <a href="#portfolio" class="bento-tile t2">
-        <img src="https://images.unsplash.com/photo-1600566753086-00f18fe6ba6a?auto=format&fit=crop&w=700&q=80" alt="Modern kitchen" loading="lazy">
+        <img src="kitchen.jpg" alt="Modern kitchen" loading="lazy">
         <span class="tile-corner">02</span>
         <div class="tile-overlay">
           <span class="tile-cat">Kitchen</span>
@@ -863,7 +878,7 @@ footer{background:#0c0f14; color:var(--slate-light); padding:80px 0 0;}
   </div>
   <div class="wrap">
     <div class="services-grid reveal stagger">
-      <div class="service-card" style="--i:0">
+      <a href="{{ route('services.show', 'loft-conversions') }}" class="service-card" style="--i:0">
         <div class="svc-photo"><img src="https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&w=600&q=80" alt="" loading="lazy"></div>
         <div class="svc-content">
           <span class="svc-num">01</span>
@@ -872,8 +887,8 @@ footer{background:#0c0f14; color:var(--slate-light); padding:80px 0 0;}
           <div class="svc-desc">Turn wasted roof space into a bedroom, office or bathroom that adds real resale value.</div>
           <span class="svc-arrow">Learn more <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
         </div>
-      </div>
-      <div class="service-card" style="--i:1">
+      </a>
+      <a href="{{ route('services.show', 'house-extensions') }}" class="service-card" style="--i:1">
         <div class="svc-photo"><img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=600&q=80" alt="" loading="lazy"></div>
         <div class="svc-content">
           <span class="svc-num">02</span>
@@ -882,8 +897,8 @@ footer{background:#0c0f14; color:var(--slate-light); padding:80px 0 0;}
           <div class="svc-desc">Single and double-storey extensions designed to extend your living space, not your stress.</div>
           <span class="svc-arrow">Learn more <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
         </div>
-      </div>
-      <div class="service-card" style="--i:2">
+      </a>
+      <a href="{{ route('services.show', 'building-construction') }}" class="service-card" style="--i:2">
         <div class="svc-photo"><img src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=600&q=80" alt="" loading="lazy"></div>
         <div class="svc-content">
           <span class="svc-num">03</span>
@@ -892,8 +907,8 @@ footer{background:#0c0f14; color:var(--slate-light); padding:80px 0 0;}
           <div class="svc-desc">Structural work, groundworks and new-builds handled by one accountable team from footings up.</div>
           <span class="svc-arrow">Learn more <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
         </div>
-      </div>
-      <div class="service-card" style="--i:3">
+      </a>
+      <a href="{{ route('services.show', 'interior-renovation') }}" class="service-card" style="--i:3">
         <div class="svc-photo"><img src="https://images.unsplash.com/photo-1600210491892-03d54c0aaf87?auto=format&fit=crop&w=600&q=80" alt="" loading="lazy"></div>
         <div class="svc-content">
           <span class="svc-num">04</span>
@@ -902,18 +917,18 @@ footer{background:#0c0f14; color:var(--slate-light); padding:80px 0 0;}
           <div class="svc-desc">Full internal refits — plastering, flooring, joinery — finished to a standard that shows.</div>
           <span class="svc-arrow">Learn more <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
         </div>
-      </div>
-      <div class="service-card" style="--i:4">
+      </a>
+      <a href="{{ route('services.show', 'kitchens-bathrooms') }}" class="service-card" style="--i:4">
         <div class="svc-photo"><img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?auto=format&fit=crop&w=600&q=80" alt="" loading="lazy"></div>
         <div class="svc-content">
           <span class="svc-num">05</span>
-          <div class="svc-icon"><svg viewBox="0 0 24 24"><path d="M13 2L4 14h6l-1 8 9-12h-6l1-8z"/></svg></div>
+          <div class="svc-icon"><svg viewBox="0 0 24 24"><path d="M4 10h16v10H4zM8 10V6a4 4 0 018 0v4"/></svg></div>
           <div class="svc-title">Kitchens & Bathrooms</div>
           <div class="svc-desc">Design-led kitchen and bathroom fit-outs, from layout planning to the final tile.</div>
           <span class="svc-arrow">Learn more <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
         </div>
-      </div>
-      <div class="service-card" style="--i:5">
+      </a>
+      <a href="{{ route('services.show', 'plumbing-heating') }}" class="service-card" style="--i:5">
         <div class="svc-photo"><img src="https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?auto=format&fit=crop&w=600&q=80" alt="" loading="lazy"></div>
         <div class="svc-content">
           <span class="svc-num">06</span>
@@ -922,18 +937,18 @@ footer{background:#0c0f14; color:var(--slate-light); padding:80px 0 0;}
           <div class="svc-desc">Bathroom plumbing, boiler installs and heating systems that are built to just work.</div>
           <span class="svc-arrow">Learn more <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
         </div>
-      </div>
-      <div class="service-card" style="--i:6">
+      </a>
+      <a href="{{ route('services.show', 'electrical-works') }}" class="service-card" style="--i:6">
         <div class="svc-photo"><img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=600&q=80" alt="" loading="lazy"></div>
         <div class="svc-content">
           <span class="svc-num">07</span>
-          <div class="svc-icon"><svg viewBox="0 0 24 24"><path d="M4 10h16v10H4zM8 10V6a4 4 0 018 0v4M4 15h16"/></svg></div>
+          <div class="svc-icon"><svg viewBox="0 0 24 24"><path d="M13 2L4 14h6l-1 8 9-12h-6l1-8z"/></svg></div>
           <div class="svc-title">Electrical Works</div>
           <div class="svc-desc">Certified rewiring, consumer units and lighting design — signed off and fully compliant.</div>
           <span class="svc-arrow">Learn more <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
         </div>
-      </div>
-      <div class="service-card" style="--i:7">
+      </a>
+      <a href="{{ route('services.show', 'external-works') }}" class="service-card" style="--i:7">
         <div class="svc-photo"><img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=600&q=80" alt="" loading="lazy"></div>
         <div class="svc-content">
           <span class="svc-num">08</span>
@@ -942,7 +957,7 @@ footer{background:#0c0f14; color:var(--slate-light); padding:80px 0 0;}
           <div class="svc-desc">Driveways, patios, roofing and render — the finishing touches that frame the whole job.</div>
           <span class="svc-arrow">Learn more <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
         </div>
-      </div>
+      </a>
     </div>
   </div>
 </section>
@@ -1427,6 +1442,12 @@ footer{background:#0c0f14; color:var(--slate-light); padding:80px 0 0;}
 </footer>
 
 <!-- ===================== FLOATING ELEMENTS ===================== -->
+<a href="https://wa.me/447397087600" target="_blank" rel="noopener noreferrer" class="float-whatsapp" aria-label="Chat on WhatsApp">
+  <svg viewBox="0 0 32 32" fill="currentColor">
+    <path d="M16 2a13.9 13.9 0 00-12 21L2 30l7.2-1.9A13.9 13.9 0 1016 2zm0 25.5a11.5 11.5 0 01-5.9-1.6l-.4-.2-4.4 1.1 1.2-4.3-.3-.4A11.6 11.6 0 1116 27.5zm6.4-8.7c-.3-.2-2-.1-2.4-.2s-.6-.2-.8.2-1 1.2-1.2 1.4-.4.3-.7.1a9.2 9.2 0 01-2.7-1.7 10.2 10.2 0 01-1.9-2.3c-.2-.3 0-.5.1-.7l.5-.6.3-.5a.6.6 0 000-.6c-.1-.2-.8-2-1.1-2.7s-.6-.6-.8-.6h-.7a1.3 1.3 0 00-.9.4 4 4 0 00-1.2 3 7 7 0 001.5 3.7c.2.3 2.6 4 6.3 5.6 3.7 1.6 3.7 1.1 4.4 1a3.7 3.7 0 002.5-1.7c.3-.6.3-1.2.2-1.3z"/>
+  </svg>
+</a>
+
 <a href="#quote" class="float-cta" id="floatCta">
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L4 14h6l-1 8 9-12h-6l1-8z"/></svg>
   Get Free Quote
