@@ -80,7 +80,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
   letter-spacing:0.02em;
 }
 .utility-bar .wrap{
-  display:flex; justify-space-between:space-between; align-items:center;
+  display:flex; justify-content:space-between; align-items:center;
   height:38px; gap:20px; flex-wrap:wrap;
 }
 .utility-bar .left{display:flex;align-items:center;gap:8px;color:var(--brass-light);}
