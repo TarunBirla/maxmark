@@ -216,10 +216,20 @@
   .services-nav-grid { grid-template-columns: repeat(2, 1fr); }
 }
 @media (max-width: 640px) {
+  .service-hero { padding: 56px 0 40px; }
   .gallery-grid { grid-template-columns: 1fr; }
   .gallery-item.big { grid-column: span 1; aspect-ratio: 4/3; }
   .process-grid { grid-template-columns: 1fr; }
   .services-nav-grid { grid-template-columns: 1fr; }
+  .hero-cta-btns { flex-direction: column; width: 100%; }
+  .hero-cta-btns .btn { width: 100%; justify-content: center; text-align: center; }
+}
+@media (max-width: 480px) {
+  .features-card { padding: 20px 16px; }
+  .sticky-sidebar-card { padding: 24px 18px; }
+  .process-card { padding: 24px 18px; }
+  .svc-nav-card { padding: 16px; }
+  .lightbox-modal { padding: 16px; }
 }
 </style>
 @endpush
