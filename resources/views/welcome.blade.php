@@ -1371,8 +1371,10 @@ section{padding:80px 0;}
   <div class="wrap">
     <div class="glazing-head reveal">
       <h2>Browse Double Glazing by Material</h2>
-      <p class="sub">Choose from uPVC, wooden, or aluminium for your double glazed windows. Each material delivers boasts brilliant energy efficiency, durability, and high security tailored to your home style.</p>
-      <button class="show-all-btn" id="toggleMaterialInfo" onclick="toggleGlazingInfo()">
+      <p class="sub">
+        Choose from uPVC, wooden, or aluminium for your double glazed windows. Each material delivers boasts brilliant energy efficiency and security performance for a warmer and more secure home. Whether you're adding a new modern look or replacing like for like, our window materials are versatile and customisable to suit your needs.
+      </p>
+      <!-- <button class="show-all-btn" id="toggleMaterialInfo" onclick="toggleGlazingInfo()">
         <span>Show all</span>
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
       </button>
@@ -1381,7 +1383,7 @@ section{padding:80px 0;}
         <h4>High-Performance Windows Crafted For Modern Living</h4>
         <p>Whether you're looking to preserve classic period aesthetics with solid engineered timber, minimize maintenance with durable uPVC, or achieve sleek architectural sightlines with thermal-break aluminium, MaxMark Builders provides complete supply and precision installation backed by a 5-year workmanship guarantee.</p>
         <p>All our double glazed units feature argon gas fillings, low-emissivity (Low-E) glass coatings, and multi-point shoot-bolt locks for optimum thermal efficiency and peace of mind.</p>
-      </div>
+      </div> -->
     </div>
 
     <div class="glazing-grid reveal">
