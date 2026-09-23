@@ -639,6 +639,351 @@ section{padding:80px 0;}
     font-size: 20px;
   }
 }
+/* ===================== DOUBLE GLAZING BY MATERIAL ===================== */
+.glazing-section {
+  background: var(--paper-2);
+  padding: 80px 0;
+  border-bottom: 1px solid var(--line);
+}
+.glazing-head {
+  text-align: center;
+  max-width: 820px;
+  margin: 0 auto 40px;
+}
+.glazing-head h2 {
+  font-size: clamp(28px, 3.8vw, 46px);
+  color: var(--ink);
+  font-family: 'Space Grotesk', sans-serif;
+  margin: 12px 0 16px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+.glazing-head p.sub {
+  color: var(--slate);
+  font-size: 16px;
+  line-height: 1.6;
+  max-width: 720px;
+  margin: 0 auto 16px;
+}
+.show-all-btn {
+  background: transparent;
+  border: none;
+  color: var(--ink);
+  font-weight: 700;
+  font-size: 14.5px;
+  font-family: 'Space Grotesk', sans-serif;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  padding: 4px 8px;
+  transition: color 0.2s, transform 0.2s;
+}
+.show-all-btn:hover {
+  color: var(--brass);
+}
+.show-all-btn svg {
+  width: 15px;
+  height: 15px;
+  transition: transform 0.3s var(--ease);
+}
+.show-all-btn.expanded svg {
+  transform: rotate(180deg);
+}
+
+.glazing-extra-info {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s var(--ease), opacity 0.4s var(--ease), margin 0.4s var(--ease);
+  opacity: 0;
+  margin-top: 0;
+  text-align: left;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  padding: 0 24px;
+  border-radius: 8px;
+}
+.glazing-extra-info.active {
+  max-height: 400px;
+  opacity: 1;
+  margin-top: 20px;
+  padding: 24px;
+}
+.glazing-extra-info h4 {
+  font-size: 16px;
+  color: var(--ink);
+  margin-bottom: 8px;
+}
+.glazing-extra-info p {
+  font-size: 14px;
+  color: var(--slate);
+  line-height: 1.6;
+  margin-bottom: 12px;
+}
+
+.glazing-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-top: 36px;
+}
+.glazing-card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  transition: transform 0.35s var(--ease), box-shadow 0.35s var(--ease), border-color 0.35s var(--ease);
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+.glazing-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.12);
+  border-color: var(--brass);
+}
+.glazing-card-img {
+  width: 100%;
+  aspect-ratio: 1/1;
+  overflow: hidden;
+  background: #f8fafc;
+  position: relative;
+}
+.glazing-card-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s var(--ease);
+}
+.glazing-card:hover .glazing-card-img img {
+  transform: scale(1.05);
+}
+.glazing-card-body {
+  padding: 22px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #ffffff;
+  border-top: 1px solid #f1f5f9;
+}
+.glazing-card-body h3 {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--ink);
+  font-family: 'Space Grotesk', sans-serif;
+  margin: 0;
+  transition: color 0.25s;
+}
+.glazing-card:hover .glazing-card-body h3 {
+  color: var(--brass);
+}
+.glazing-card-arrow {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: #f8fafc;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #94a3b8;
+  transition: background 0.25s, color 0.25s, transform 0.25s;
+  flex-shrink: 0;
+}
+.glazing-card-arrow svg {
+  width: 14px;
+  height: 14px;
+  stroke-width: 2.5;
+}
+.glazing-card:hover .glazing-card-arrow {
+  background: var(--brass);
+  color: #ffffff;
+  transform: translateX(3px);
+}
+
+/* Material Details Modal */
+.material-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: rgba(18, 22, 28, 0.75);
+  backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s var(--ease);
+}
+.material-modal-backdrop.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+.material-modal-container {
+  background: #ffffff;
+  width: 100%;
+  max-width: 840px;
+  max-height: 90vh;
+  overflow-y: auto;
+  border-radius: 16px;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.3);
+  position: relative;
+  transform: scale(0.95) translateY(10px);
+  transition: transform 0.35s var(--ease);
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+}
+.material-modal-backdrop.active .material-modal-container {
+  transform: scale(1) translateY(0);
+}
+.material-modal-close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(18, 22, 28, 0.08);
+  border: none;
+  font-size: 24px;
+  line-height: 1;
+  color: var(--ink);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  transition: background 0.2s, color 0.2s;
+}
+.material-modal-close:hover {
+  background: var(--ink);
+  color: #ffffff;
+}
+.material-modal-img {
+  background: #f8fafc;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  border-right: 1px solid #f1f5f9;
+}
+.material-modal-img img {
+  width: 100%;
+  max-height: 380px;
+  object-fit: contain;
+  border-radius: 8px;
+}
+.material-modal-content {
+  padding: 36px 32px 32px;
+  display: flex;
+  flex-direction: column;
+}
+.material-modal-tag {
+  display: inline-block;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--brass);
+  background: rgba(184, 134, 59, 0.1);
+  padding: 4px 10px;
+  border-radius: 4px;
+  width: max-content;
+  margin-bottom: 12px;
+  font-weight: 600;
+}
+.material-modal-content h3 {
+  font-size: 26px;
+  color: var(--ink);
+  font-family: 'Space Grotesk', sans-serif;
+  margin-bottom: 10px;
+  font-weight: 700;
+}
+.material-modal-desc {
+  font-size: 14.5px;
+  color: var(--slate);
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+.material-specs-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  margin-bottom: 20px;
+  background: #f8fafc;
+  padding: 14px;
+  border-radius: 8px;
+  border: 1px solid #e2e8f0;
+}
+.spec-item {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.spec-label {
+  font-size: 11px;
+  font-family: 'JetBrains Mono', monospace;
+  color: #64748b;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.spec-value {
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--ink);
+}
+.material-features-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.material-features-list li {
+  font-size: 13.5px;
+  color: var(--slate);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.material-features-list li svg {
+  width: 16px;
+  height: 16px;
+  stroke: var(--brass);
+  flex-shrink: 0;
+}
+.material-modal-cta {
+  margin-top: auto;
+  display: flex;
+  gap: 12px;
+}
+
+@media (max-width: 900px) {
+  .glazing-grid {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+  .material-modal-container {
+    grid-template-columns: 1fr;
+    max-height: 85vh;
+  }
+  .material-modal-img {
+    border-right: none;
+    border-bottom: 1px solid #f1f5f9;
+    padding: 16px;
+  }
+  .material-modal-img img {
+    max-height: 220px;
+  }
+  .material-modal-content {
+    padding: 24px 20px;
+  }
+}
 </style>
 @endpush
 
@@ -1021,6 +1366,66 @@ section{padding:80px 0;}
     </div>
   </div>
 </section>
+<!-- ===================== DOUBLE GLAZING BY MATERIAL ===================== -->
+<section class="glazing-section" id="glazing-materials">
+  <div class="wrap">
+    <div class="glazing-head reveal">
+      <h2>Browse Double Glazing by Material</h2>
+      <p class="sub">Choose from uPVC, wooden, or aluminium for your double glazed windows. Each material delivers boasts brilliant energy efficiency, durability, and high security tailored to your home style.</p>
+      <button class="show-all-btn" id="toggleMaterialInfo" onclick="toggleGlazingInfo()">
+        <span>Show all</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+
+      <div class="glazing-extra-info" id="glazingExtraInfo">
+        <h4>High-Performance Windows Crafted For Modern Living</h4>
+        <p>Whether you're looking to preserve classic period aesthetics with solid engineered timber, minimize maintenance with durable uPVC, or achieve sleek architectural sightlines with thermal-break aluminium, MaxMark Builders provides complete supply and precision installation backed by a 5-year workmanship guarantee.</p>
+        <p>All our double glazed units feature argon gas fillings, low-emissivity (Low-E) glass coatings, and multi-point shoot-bolt locks for optimum thermal efficiency and peace of mind.</p>
+      </div>
+    </div>
+
+    <div class="glazing-grid reveal">
+      <!-- Card 1: uPVC Windows -->
+      <div class="glazing-card" onclick="openMaterialModal('upvc')" role="button" tabindex="0">
+        <div class="glazing-card-img">
+          <img src="/1.jpg" alt="uPVC Windows" loading="lazy">
+        </div>
+        <div class="glazing-card-body">
+          <h3>uPVC Windows</h3>
+          <div class="glazing-card-arrow">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M9 18l6-6-6-6"/></svg>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 2: Wooden Windows -->
+      <div class="glazing-card" onclick="openMaterialModal('wooden')" role="button" tabindex="0">
+        <div class="glazing-card-img">
+          <img src="2.jpg" alt="Wooden Windows" loading="lazy">
+        </div>
+        <div class="glazing-card-body">
+          <h3>Wooden Windows</h3>
+          <div class="glazing-card-arrow">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M9 18l6-6-6-6"/></svg>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 3: Aluminium Windows -->
+      <div class="glazing-card" onclick="openMaterialModal('aluminium')" role="button" tabindex="0">
+        <div class="glazing-card-img">
+          <img src="/3.webp" alt="Aluminium Windows" loading="lazy">
+        </div>
+        <div class="glazing-card-body">
+          <h3>Aluminium Windows</h3>
+          <div class="glazing-card-arrow">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M9 18l6-6-6-6"/></svg>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
 <!-- ===================== PORTFOLIO ===================== -->
 <section id="portfolio" style="background:var(--paper-2);">
@@ -1354,6 +1759,50 @@ section{padding:80px 0;}
     </div>
   </div>
 </div>
+
+<!-- ===================== GLAZING MATERIAL DETAILS MODAL ===================== -->
+<div class="material-modal-backdrop" id="materialModal" onclick="handleMaterialBackdropClick(event)" aria-hidden="true">
+  <div class="material-modal-container">
+    <button class="material-modal-close" onclick="closeMaterialModal()" aria-label="Close modal">&times;</button>
+    
+    <div class="material-modal-img">
+      <img id="mModalImg" src="" alt="">
+    </div>
+    
+    <div class="material-modal-content">
+      <span class="material-modal-tag" id="mModalTag">A+ ENERGY RATED</span>
+      <h3 id="mModalTitle">uPVC Windows</h3>
+      <p class="material-modal-desc" id="mModalDesc"></p>
+      
+      <div class="material-specs-grid">
+        <div class="spec-item">
+          <span class="spec-label">Thermal Rating</span>
+          <span class="spec-value" id="mSpecThermal">A+ Rated (1.1 W/m²K)</span>
+        </div>
+        <div class="spec-item">
+          <span class="spec-label">Acoustic dB</span>
+          <span class="spec-value" id="mSpecSound">Up to 40dB reduction</span>
+        </div>
+        <div class="spec-item">
+          <span class="spec-label">Security</span>
+          <span class="spec-value" id="mSpecSecurity">PAS 24 Multi-Point</span>
+        </div>
+        <div class="spec-item">
+          <span class="spec-label">Maintenance</span>
+          <span class="spec-value" id="mSpecMaint">Ultra-Low</span>
+        </div>
+      </div>
+
+      <ul class="material-features-list" id="mModalFeatures">
+        <!-- populated dynamically -->
+      </ul>
+
+      <div class="material-modal-cta">
+        <a href="#quote" onclick="closeMaterialModal()" class="btn btn-brass" style="width:100%;text-align:center;justify-content:center;">Get a quote for this window <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </div>
+    </div>
+  </div>
+</div>
 @endsection
 
 @push('scripts')
@@ -1671,9 +2120,134 @@ function handleModalBackdropClick(event) {
   }
 }
 
+/* ---------- Glazing Materials & Modal Data Script ---------- */
+const glazingMaterialsData = {
+  upvc: {
+    title: 'uPVC Double Glazed Windows',
+    tag: 'A+ ENERGY RATED · BESTSELLER',
+    img: '/1.jpg',
+    desc: 'uPVC double glazed windows are the UK\'s most popular window choice. Engineered for maximum thermal insulation, noise reduction, and zero rot or maintenance.',
+    specs: {
+      thermal: 'A+ Rated (1.1 W/m²K)',
+      sound: 'Up to 40dB reduction',
+      security: 'PAS 24 Shoot-bolt Locks',
+      maint: 'Ultra-Low Wipe Clean'
+    },
+    features: [
+      'Argon gas-filled double glazing with Low-E thermal coating',
+      'High impact-resistant unplasticised PVC multi-chambered frame',
+      'Available in Casement, Flush Sash, Tilt & Turn, and French styles',
+      'Multi-point locking mechanism with key-locking handles',
+      'Wide choice of finishes: Smooth White, Anthracite Grey, Chartwell Green'
+    ]
+  },
+  wooden: {
+    title: 'Timber & Wooden Windows',
+    tag: 'HERITAGE CHARM · FSC CERTIFIED TIMBER',
+    img: '/2.jpg',
+    desc: 'Crafted from premium engineered hardwood or softwood, our wooden windows offer timeless architectural elegance, natural warmth, and exceptional longevity.',
+    specs: {
+      thermal: 'A Rated Natural Insulation',
+      sound: 'Up to 42dB reduction',
+      security: 'Heavy Duty Friction Hinges',
+      maint: 'Factory Micro-porous Finish'
+    },
+    features: [
+      'Sustainably sourced FSC® certified engineered timber (Oak, Accoya)',
+      'Ideal for period restorations, Listed buildings, and Conservation areas',
+      'Micro-porous micropaint finish resists peeling and weather damage',
+      'Traditional box sash cord-and-weights or modern friction hinges',
+      'Durable dual-weather seal gaskets eliminate cold draughts'
+    ]
+  },
+  aluminium: {
+    title: 'Aluminium Double Glazed Windows',
+    tag: 'ULTRA-SLIM FRAME · MODERN ARCHITECTURE',
+    img: '/3.webp',
+    desc: 'Featuring ultra-slim sightlines and remarkable structural strength, aluminium windows let in maximum natural light while providing a crisp contemporary look.',
+    specs: {
+      thermal: 'A Rated Polyamide Break',
+      sound: 'Up to 38dB reduction',
+      security: 'Heavy-Duty Multi-Point',
+      maint: 'Zero Maintenance Powder Coat'
+    },
+    features: [
+      'Ultra-slim frame profiles for maximum light and uninterrupted views',
+      'Polyamide thermal break technology prevents heat transfer',
+      'Durable marine-grade powder-coated finish in 200+ RAL colors',
+      'Resists warping, rusting, and fading in harsh weather conditions',
+      'Complements contemporary extensions, bi-fold doors, and skylights'
+    ]
+  }
+};
+
+function toggleGlazingInfo() {
+  const extraInfo = document.getElementById('glazingExtraInfo');
+  const btn = document.getElementById('toggleMaterialInfo');
+  if (extraInfo && btn) {
+    const isExpanded = extraInfo.classList.contains('active');
+    if (isExpanded) {
+      extraInfo.classList.remove('active');
+      btn.classList.remove('expanded');
+      btn.querySelector('span').innerText = 'Show all';
+    } else {
+      extraInfo.classList.add('active');
+      btn.classList.add('expanded');
+      btn.querySelector('span').innerText = 'Show less';
+    }
+  }
+}
+
+function openMaterialModal(key) {
+  const data = glazingMaterialsData[key];
+  if (!data) return;
+
+  document.getElementById('mModalImg').src = data.img;
+  document.getElementById('mModalImg').alt = data.title;
+  document.getElementById('mModalTag').innerText = data.tag;
+  document.getElementById('mModalTitle').innerText = data.title;
+  document.getElementById('mModalDesc').innerText = data.desc;
+  
+  document.getElementById('mSpecThermal').innerText = data.specs.thermal;
+  document.getElementById('mSpecSound').innerText = data.specs.sound;
+  document.getElementById('mSpecSecurity').innerText = data.specs.security;
+  document.getElementById('mSpecMaint').innerText = data.specs.maint;
+
+  const featuresUl = document.getElementById('mModalFeatures');
+  featuresUl.innerHTML = data.features.map(f => `
+    <li>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+      <span>${f}</span>
+    </li>
+  `).join('');
+
+  const modal = document.getElementById('materialModal');
+  if (modal) {
+    modal.classList.add('active');
+    modal.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+  }
+}
+
+function closeMaterialModal() {
+  const modal = document.getElementById('materialModal');
+  if (modal) {
+    modal.classList.remove('active');
+    modal.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  }
+}
+
+function handleMaterialBackdropClick(event) {
+  if (event.target && event.target.id === 'materialModal') {
+    closeMaterialModal();
+  }
+}
+
 document.addEventListener('keydown', function(event) {
   if (event.key === 'Escape') {
     closeVideoModal();
+    closeMaterialModal();
   }
 });
 </script>
