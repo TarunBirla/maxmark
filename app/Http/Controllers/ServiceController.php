@@ -1,3 +1,4 @@
+
 <?php
 
 namespace App\Http\Controllers;
@@ -245,40 +246,66 @@ class ServiceController extends Controller
                     ['url' => 'https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=800&q=80', 'title' => 'Instant Boiling Tap', 'size' => 'medium', 'caption' => '3-in-1 hot water tap tank installed under sink']
                 ]
             ],
-            'electrical-works' => [
-                'slug' => 'electrical-works',
+            'double-glazing-specialist' => [
+                'slug' => 'double-glazing-specialist',
                 'number' => '07',
-                'title' => 'Electrical Works',
-                'eyebrow' => 'NICEIC Certified Wiring',
-                'summary' => 'Certified rewiring, consumer units and lighting design — signed off and fully compliant.',
-                'overview' => 'Safe, intelligent electrical infrastructure forms the backbone of any modern home. MaxMark Builders provides NICEIC certified electrical installations, complete house rewires, fuse box upgrades, architectural lighting schemes, and smart home automation. All electrical work is completed to Part P Building Regulations with full certification.',
+                'title' => 'Double Glazing Specialist',
+                'eyebrow' => 'A+ Rated Double Glazing & Window Installation',
+                'summary' => 'Bespoke uPVC, wooden, and aluminium double glazed window & door supply and precision installation.',
+                'overview' => 'MaxMark Builders provides comprehensive double glazing supply and installation services across London. From energy-efficient uPVC casement windows and authentic wooden box sashes to slimline architectural aluminium profiles, our fitters deliver exceptional thermal insulation, noise reduction, and high security.',
                 'features' => [
-                    'Full & Partial Property Rewiring Services',
-                    'Dual RCD & RCBO Consumer Unit Upgrades',
-                    'Architectural LED Downlight & Feature Strip Schemes',
-                    'EV Electric Vehicle Charger Installations',
-                    'Garden, Security & Outdoor Exterior Lighting',
-                    'Part P Building Control Compliance & Electrical Certificates'
+                    'A+ Rated uPVC, Wooden & Aluminium Double Glazed Windows',
+                    'Energy Efficient Low-E Glass with Argon Gas Fillings',
+                    'Multi-Point PAS 24 Shoot-Bolt Locking Mechanisms',
+                    'Bespoke Sash, Casement, Flush & Tilt-and-Turn Styles',
+                    'Noise Reduction Acoustic Glass Installation',
+                    '5-Year Workmanship Guarantee & FENSA Certification'
                 ],
                 'process' => [
-                    ['step' => '01', 'title' => 'Electrical Plan & Spec', 'desc' => 'Mapping switch positions, socket locations, light loops, and power loads.'],
-                    ['step' => '02', 'title' => 'First-Fix Chasing', 'desc' => 'Chasing walls, running twin & earth cables, back-box installation, and cable containment.'],
-                    ['step' => '03', 'title' => 'Second-Fix Fitting', 'desc' => 'Fitting faceplates, light fittings, consumer unit termination, and smart dimmers.'],
-                    ['step' => '04', 'title' => 'Testing & Sign-off', 'desc' => 'Full electrical safety testing, EICR certificate issuance, and Building Control notification.']
+                    ['step' => '01', 'title' => 'Site Survey & Measuring', 'desc' => 'Free home visit to take exact millimetre measurements and discuss style options.'],
+                    ['step' => '02', 'title' => 'Precision Manufacturing', 'desc' => 'Custom fabrication of window frames, double glazed units, and hardware.'],
+                    ['step' => '03', 'title' => 'Professional Installation', 'desc' => 'Clean removal of old frames and precision fitting with airtight weather seals.'],
+                    ['step' => '04', 'title' => 'Sign-Off & Certification', 'desc' => 'Final inspection, smooth operation check, snagging cleanup, and guarantee issuance.']
                 ],
                 'gallery' => [
-                    ['url' => 'https://images.unsplash.com/photo-1544725176-7c40e5a71c5e?auto=format&fit=crop&w=1200&q=80', 'title' => 'Consumer Unit Upgrade', 'size' => 'big', 'caption' => 'Modern surge protected RCBO consumer unit installation'],
-                    ['url' => 'https://images.unsplash.com/photo-1507089947368-19c1da9775ae?auto=format&fit=crop&w=800&q=80', 'title' => 'Architectural LED Lighting', 'size' => 'medium', 'caption' => 'Recessed LED ceiling downlights and perimeter ambient glow'],
-                    ['url' => 'https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&w=800&q=80', 'title' => 'Brass Switch Plate', 'size' => 'small', 'caption' => 'Brushed brass toggle light switches on plastered wall'],
-                    ['url' => 'https://images.unsplash.com/photo-1581094794329-c8112a89af12?auto=format&fit=crop&w=800&q=80', 'title' => 'EV Charging Point', 'size' => 'medium', 'caption' => 'Fast 7kW home EV charger wall installation'],
-                    ['url' => 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80', 'title' => 'Pendant Island Lighting', 'size' => 'big', 'caption' => 'Dimmable feature pendant lights over kitchen island'],
-                    ['url' => 'https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=800&q=80', 'title' => 'First-Fix Cable Runs', 'size' => 'small', 'caption' => 'Neat ceiling cable runs clipped before plasterboarding'],
-                    ['url' => 'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=800&q=80', 'title' => 'Garden Spike Lighting', 'size' => 'medium', 'caption' => 'Low voltage LED garden landscape lighting'],
-                    ['url' => 'https://images.unsplash.com/photo-1595526114035-0d45ed16cfbf?auto=format&fit=crop&w=800&q=80', 'title' => 'USB Socket Plates', 'size' => 'small', 'caption' => 'Integrated USB-C double power sockets'],
-                    ['url' => 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1200&q=80', 'title' => 'Smart Lighting Hub', 'size' => 'big', 'caption' => 'Centralised smart lighting control panel'],
-                    ['url' => 'https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=800&q=80', 'title' => 'Bathroom IP65 Spotlights', 'size' => 'medium', 'caption' => 'Waterproof IP65 rated LED shower lights'],
-                    ['url' => 'https://images.unsplash.com/photo-1600573472550-8090b5e0745e?auto=format&fit=crop&w=800&q=80', 'title' => 'Smoke & Heat Detector Network', 'size' => 'small', 'caption' => 'Mains powered interlinked smoke alarm installation'],
-                    ['url' => 'https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=800&q=80', 'title' => 'Under-Cabinet Strip Lights', 'size' => 'medium', 'caption' => 'Continuous COB LED tape under wall cabinets']
+                    ['url' => '/s1.jpeg', 'title' => 'uPVC Casement Window Installation', 'size' => 'big', 'caption' => 'A+ Energy rated white uPVC casement window'],
+                    ['url' => '/s2.jpeg', 'title' => 'Traditional Timber Box Sash', 'size' => 'medium', 'caption' => 'Authentic wooden sash window restoration'],
+                    ['url' => '/s3.jpeg', 'title' => 'Slimline Aluminium Frames', 'size' => 'small', 'caption' => 'Contemporary aluminium profile with maximum glass area'],
+                    ['url' => '/s4.jpeg', 'title' => 'Flush Fit Window System', 'size' => 'medium', 'caption' => 'Flush sash windows sitting flush within outer frame'],
+                    ['url' => '/s5.jpeg', 'title' => 'Bay & Bow Glazing Refit', 'size' => 'big', 'caption' => 'Multi-section bay window flooded with natural light'],
+                    ['url' => '/s6.jpeg', 'title' => 'Acoustic Double Glazed Glass', 'size' => 'small', 'caption' => 'High noise reduction acoustic glass installation'],
+                    ['url' => '/s7.jpeg', 'title' => 'Cottage Style Georgian Bars', 'size' => 'medium', 'caption' => 'Rustic cottage window with internal astragal bars']
+                ]
+            ],
+            'electrical-works' => [
+                'slug' => 'double-glazing-specialist',
+                'number' => '07',
+                'title' => 'Double Glazing Specialist',
+                'eyebrow' => 'A+ Rated Double Glazing & Window Installation',
+                'summary' => 'Bespoke uPVC, wooden, and aluminium double glazed window & door supply and precision installation.',
+                'overview' => 'MaxMark Builders provides comprehensive double glazing supply and installation services across London. From energy-efficient uPVC casement windows and authentic wooden box sashes to slimline architectural aluminium profiles, our fitters deliver exceptional thermal insulation, noise reduction, and high security.',
+                'features' => [
+                    'A+ Rated uPVC, Wooden & Aluminium Double Glazed Windows',
+                    'Energy Efficient Low-E Glass with Argon Gas Fillings',
+                    'Multi-Point PAS 24 Shoot-Bolt Locking Mechanisms',
+                    'Bespoke Sash, Casement, Flush & Tilt-and-Turn Styles',
+                    'Noise Reduction Acoustic Glass Installation',
+                    '5-Year Workmanship Guarantee & FENSA Certification'
+                ],
+                'process' => [
+                    ['step' => '01', 'title' => 'Site Survey & Measuring', 'desc' => 'Free home visit to take exact millimetre measurements and discuss style options.'],
+                    ['step' => '02', 'title' => 'Precision Manufacturing', 'desc' => 'Custom fabrication of window frames, double glazed units, and hardware.'],
+                    ['step' => '03', 'title' => 'Professional Installation', 'desc' => 'Clean removal of old frames and precision fitting with airtight weather seals.'],
+                    ['step' => '04', 'title' => 'Sign-Off & Certification', 'desc' => 'Final inspection, smooth operation check, snagging cleanup, and guarantee issuance.']
+                ],
+                'gallery' => [
+                    ['url' => '/s1.jpeg', 'title' => 'uPVC Casement Window Installation', 'size' => 'big', 'caption' => 'A+ Energy rated white uPVC casement window'],
+                    ['url' => '/s2.jpeg', 'title' => 'Traditional Timber Box Sash', 'size' => 'medium', 'caption' => 'Authentic wooden sash window restoration'],
+                    ['url' => '/s3.jpeg', 'title' => 'Slimline Aluminium Frames', 'size' => 'small', 'caption' => 'Contemporary aluminium profile with maximum glass area'],
+                    ['url' => '/s4.jpeg', 'title' => 'Flush Fit Window System', 'size' => 'medium', 'caption' => 'Flush sash windows sitting flush within outer frame'],
+                    ['url' => '/s5.jpeg', 'title' => 'Bay & Bow Glazing Refit', 'size' => 'big', 'caption' => 'Multi-section bay window flooded with natural light'],
+                    ['url' => '/s6.jpeg', 'title' => 'Acoustic Double Glazed Glass', 'size' => 'small', 'caption' => 'High noise reduction acoustic glass installation'],
+                    ['url' => '/s7.jpeg', 'title' => 'Cottage Style Georgian Bars', 'size' => 'medium', 'caption' => 'Rustic cottage window with internal astragal bars']
                 ]
             ],
             'external-works' => [

@@ -1390,13 +1390,13 @@ section{padding:80px 0;}
           <span class="svc-arrow">Learn more <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
         </div>
       </a>
-      <a href="{{ route('services.show', 'electrical-works') }}" class="service-card" style="--i:6">
-        <div class="svc-photo"><img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=600&q=80" alt="" loading="lazy"></div>
+      <a href="{{ route('services.show', 'double-glazing-specialist') }}" class="service-card" style="--i:6">
+        <div class="svc-photo"><img src="/s1.jpeg" alt="Double Glazing Specialist" loading="lazy"></div>
         <div class="svc-content">
           <span class="svc-num">07</span>
-          <div class="svc-icon"><svg viewBox="0 0 24 24"><path d="M13 2L4 14h6l-1 8 9-12h-6l1-8z"/></svg></div>
-          <div class="svc-title">Electrical Works</div>
-          <div class="svc-desc">Certified rewiring, consumer units and lighting design — signed off and fully compliant.</div>
+          <div class="svc-icon"><svg viewBox="0 0 24 24"><path d="M12 3L2 12h3v8h6v-6h2v6h6v-8h3L12 3z"/></svg></div>
+          <div class="svc-title">Double Glazing Specialist</div>
+          <div class="svc-desc">Bespoke uPVC, wooden, and aluminium double glazed window & door supply and precision installation.</div>
           <span class="svc-arrow">Learn more <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
         </div>
       </a>

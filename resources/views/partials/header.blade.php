@@ -30,7 +30,7 @@
               <a href="{{ route('services.show', 'interior-renovation') }}" class="{{ request()->is('services/interior-renovation') ? 'active-mega' : '' }}"><svg viewBox="0 0 24 24"><path d="M4 4h16v16H4zM4 12h16"/></svg>Interior Renovation</a>
               <a href="{{ route('services.show', 'kitchens-bathrooms') }}" class="{{ request()->is('services/kitchens-bathrooms') ? 'active-mega' : '' }}"><svg viewBox="0 0 24 24"><path d="M4 10h16v10H4zM8 10V6a4 4 0 018 0v4"/></svg>Kitchens & Bathrooms</a>
               <a href="{{ route('services.show', 'plumbing-heating') }}" class="{{ request()->is('services/plumbing-heating') ? 'active-mega' : '' }}"><svg viewBox="0 0 24 24"><path d="M12 2s6 6 6 11a6 6 0 01-12 0c0-5 6-11 6-11z"/></svg>Plumbing & Heating</a>
-              <a href="{{ route('services.show', 'electrical-works') }}" class="{{ request()->is('services/electrical-works') ? 'active-mega' : '' }}"><svg viewBox="0 0 24 24"><path d="M13 2L4 14h6l-1 8 9-12h-6l1-8z"/></svg>Electrical Works</a>
+              <a href="{{ route('services.show', 'double-glazing-specialist') }}" class="{{ request()->is('services/double-glazing-specialist') || request()->is('services/electrical-works') ? 'active-mega' : '' }}"><svg viewBox="0 0 24 24"><path d="M12 3L2 12h3v8h6v-6h2v6h6v-8h3L12 3z"/></svg>Double Glazing Specialist</a>
               <a href="{{ route('services.show', 'external-works') }}" class="{{ request()->is('services/external-works') ? 'active-mega' : '' }}"><svg viewBox="0 0 24 24"><path d="M3 20h18M5 20V10l7-6 7 6v10"/></svg>External Works</a>
             </div>
           </li>

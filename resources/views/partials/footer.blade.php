@@ -30,7 +30,7 @@
           <li><a href="{{ route('services.show', 'loft-conversions') }}">Loft Conversions</a></li>
           <li><a href="{{ route('services.show', 'house-extensions') }}">House Extensions</a></li>
           <li><a href="{{ route('services.show', 'kitchens-bathrooms') }}">Kitchens & Bathrooms</a></li>
-          <li><a href="{{ route('services.show', 'electrical-works') }}">Electrical Works</a></li>
+          <li><a href="{{ route('services.show', 'double-glazing-specialist') }}">Double Glazing Specialist</a></li>
           <li><a href="{{ route('services.show', 'plumbing-heating') }}">Plumbing & Heating</a></li>
         </ul>
       </div>
