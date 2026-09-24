@@ -180,11 +180,14 @@ nav.main-nav a.nav-link.active{
 }
 .has-mega{position:relative;}
 .mega{
-  position:absolute; top:calc(100% + 20px); left:50%; transform:translateX(-50%) translateY(8px);
+  position:absolute; top:calc(100% + 8px); left:50%; transform:translateX(-50%) translateY(8px);
   background:var(--ink-2); border:1px solid var(--line-dark); width:560px;
   padding:22px; display:grid; grid-template-columns:1fr 1fr; gap:4px;
   opacity:0; visibility:hidden; transition:opacity .25s var(--ease), transform .25s var(--ease);
   box-shadow:0 30px 60px rgba(0,0,0,.45);
+}
+.mega::before {
+  content:''; position:absolute; top:-24px; left:0; right:0; height:24px; background:transparent;
 }
 .has-mega:hover .mega, .has-mega:focus-within .mega{opacity:1; visibility:visible; transform:translateX(-50%) translateY(0);}
 .mega a{
