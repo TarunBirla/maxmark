@@ -984,6 +984,183 @@ section{padding:80px 0;}
     padding: 24px 20px;
   }
 }
+/* ===================== DOUBLE GLAZING STYLES ===================== */
+.styles-section {
+  background: var(--paper-2);
+  padding: 80px 0 60px;
+  border-bottom: 1px solid var(--line);
+}
+.styles-head {
+  text-align: center;
+  max-width: 860px;
+  margin: 0 auto 48px;
+}
+.styles-head h2 {
+  font-size: clamp(28px, 3.8vw, 46px);
+  color: var(--ink);
+  font-family: 'Space Grotesk', sans-serif;
+  margin: 12px 0 16px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+.styles-head p.sub {
+  color: var(--slate);
+  font-size: 16px;
+  line-height: 1.6;
+  max-width: 780px;
+  margin: 0 auto;
+}
+
+.styles-container {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+.styles-grid-top {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+.styles-grid-bottom {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+.styles-grid-bottom .style-card {
+  width: calc(33.333% - 16px);
+  max-width: 360px;
+}
+
+.style-card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  transition: transform 0.35s var(--ease), box-shadow 0.35s var(--ease), border-color 0.35s var(--ease);
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+.style-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.12);
+  border-color: var(--brass);
+}
+.style-card-img {
+  width: 100%;
+  aspect-ratio: 4/3;
+  overflow: hidden;
+  background: #f8fafc;
+  position: relative;
+}
+.style-card-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s var(--ease);
+}
+.style-card:hover .style-card-img img {
+  transform: scale(1.05);
+}
+
+/* Green Bestseller Ribbon */
+.ribbon-badge {
+  position: absolute;
+  top: 18px;
+  left: -28px;
+  background: #48bb78;
+  color: #ffffff;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  padding: 4px 30px;
+  transform: rotate(-45deg);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  z-index: 5;
+  text-transform: uppercase;
+  font-family: 'Space Grotesk', sans-serif;
+}
+
+.style-card-body {
+  padding: 18px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #ffffff;
+  border-top: 1px solid #f1f5f9;
+}
+.style-card-body h3 {
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--ink);
+  font-family: 'Space Grotesk', sans-serif;
+  margin: 0;
+  transition: color 0.25s;
+}
+.style-card:hover .style-card-body h3 {
+  color: var(--brass);
+}
+.style-card-arrow {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: #f8fafc;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #94a3b8;
+  transition: background 0.25s, color 0.25s, transform 0.25s;
+  flex-shrink: 0;
+}
+.style-card-arrow svg {
+  width: 14px;
+  height: 14px;
+  stroke-width: 2.5;
+}
+.style-card:hover .style-card-arrow {
+  background: var(--brass);
+  color: #ffffff;
+  transform: translateX(3px);
+}
+
+/* Responsive Breakpoints for Styles Section */
+@media (max-width: 1024px) {
+  .styles-grid-top {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px;
+  }
+  .styles-grid-bottom {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px;
+  }
+  .styles-grid-bottom .style-card {
+    width: 100%;
+    max-width: none;
+  }
+}
+@media (max-width: 600px) {
+  .styles-grid-top,
+  .styles-grid-bottom {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+  }
+  .style-card-body {
+    padding: 14px 12px;
+  }
+  .style-card-body h3 {
+    font-size: 14.5px;
+  }
+  .ribbon-badge {
+    font-size: 9.5px;
+    padding: 3px 24px;
+    top: 14px;
+    left: -26px;
+  }
+}
 </style>
 @endpush
 
@@ -1365,7 +1542,116 @@ section{padding:80px 0;}
       </div>
     </div>
   </div>
+</section><!-- ===================== DOUBLE GLAZING STYLES ===================== -->
+<section class="styles-section" id="glazing-styles">
+  <div class="wrap">
+    <div class="styles-head reveal">
+      <h2>Browse Double Glazing Styles</h2>
+      <p class="sub">Find the right double glazing for your home from our extensive range of styles. Choose a classic casement, the timeless style of a traditional sash window or modern designer flush windows. Whatever you’re looking for, we’ve got the window style to suit you.</p>
+    </div>
+
+    <div class="styles-container reveal">
+      <!-- Top Row: 4 Cards -->
+      <div class="styles-grid-top">
+        <!-- 1. Casement Windows (Bestseller) -->
+        <div class="style-card" onclick="openStyleModal('casement')" role="button" tabindex="0">
+          <div class="style-card-img">
+            <div class="ribbon-badge">Bestseller</div>
+            <img src="/b1.webp" alt="Casement Windows" loading="lazy">
+          </div>
+          <div class="style-card-body">
+            <h3>Casement Windows</h3>
+            <div class="style-card-arrow">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M9 18l6-6-6-6"/></svg>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2. Sash Windows -->
+        <div class="style-card" onclick="openStyleModal('sash')" role="button" tabindex="0">
+          <div class="style-card-img">
+            <img src="/b2.webp" alt="Sash Windows" loading="lazy">
+          </div>
+          <div class="style-card-body">
+            <h3>Sash Windows</h3>
+            <div class="style-card-arrow">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M9 18l6-6-6-6"/></svg>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3. Flush Windows -->
+        <div class="style-card" onclick="openStyleModal('flush')" role="button" tabindex="0">
+          <div class="style-card-img">
+            <img src="/b3.webp" alt="Flush Windows" loading="lazy">
+          </div>
+          <div class="style-card-body">
+            <h3>Flush Windows</h3>
+            <div class="style-card-arrow">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M9 18l6-6-6-6"/></svg>
+            </div>
+          </div>
+        </div>
+
+        <!-- 4. Bay Windows -->
+        <div class="style-card" onclick="openStyleModal('bay')" role="button" tabindex="0">
+          <div class="style-card-img">
+            <img src="/b4.jpg" alt="Bay Windows" loading="lazy">
+          </div>
+          <div class="style-card-body">
+            <h3>Bay Windows</h3>
+            <div class="style-card-arrow">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M9 18l6-6-6-6"/></svg>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bottom Row: 3 Cards Centered -->
+      <div class="styles-grid-bottom">
+        <!-- 5. Cottage Windows -->
+        <div class="style-card" onclick="openStyleModal('cottage')" role="button" tabindex="0">
+          <div class="style-card-img">
+            <img src="/b5.webp" alt="Cottage Windows" loading="lazy">
+          </div>
+          <div class="style-card-body">
+            <h3>Cottage Windows</h3>
+            <div class="style-card-arrow">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M9 18l6-6-6-6"/></svg>
+            </div>
+          </div>
+        </div>
+
+        <!-- 6. Tilt and Turn -->
+        <div class="style-card" onclick="openStyleModal('tilt_turn')" role="button" tabindex="0">
+          <div class="style-card-img">
+            <img src="/b6.webp" alt="Tilt and Turn" loading="lazy">
+          </div>
+          <div class="style-card-body">
+            <h3>Tilt and Turn</h3>
+            <div class="style-card-arrow">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M9 18l6-6-6-6"/></svg>
+            </div>
+          </div>
+        </div>
+
+        <!-- 7. Shaped Windows -->
+        <div class="style-card" onclick="openStyleModal('shaped')" role="button" tabindex="0">
+          <div class="style-card-img">
+            <img src="/b7.webp" alt="Shaped Windows" loading="lazy">
+          </div>
+          <div class="style-card-body">
+            <h3>Shaped Windows</h3>
+            <div class="style-card-arrow">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M9 18l6-6-6-6"/></svg>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
+
 <!-- ===================== DOUBLE GLAZING BY MATERIAL ===================== -->
 <section class="glazing-section" id="glazing-materials">
   <div class="wrap">
@@ -1801,6 +2087,48 @@ section{padding:80px 0;}
 
       <div class="material-modal-cta">
         <a href="#quote" onclick="closeMaterialModal()" class="btn btn-brass" style="width:100%;text-align:center;justify-content:center;">Get a quote for this window <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </div>
+    </div>
+  </div>
+<!-- ===================== GLAZING STYLE DETAILS MODAL ===================== -->
+<div class="material-modal-backdrop" id="styleModal" onclick="handleStyleBackdropClick(event)" aria-hidden="true">
+  <div class="material-modal-container">
+    <button class="material-modal-close" onclick="closeStyleModal()" aria-label="Close modal">&times;</button>
+    
+    <div class="material-modal-img">
+      <img id="sModalImg" src="" alt="">
+    </div>
+    
+    <div class="material-modal-content">
+      <span class="material-modal-tag" id="sModalTag">BESTSELLER · CLASSIC</span>
+      <h3 id="sModalTitle">Casement Windows</h3>
+      <p class="material-modal-desc" id="sModalDesc"></p>
+      
+      <div class="material-specs-grid">
+        <div class="spec-item">
+          <span class="spec-label">Opening Action</span>
+          <span class="spec-value" id="sSpecOpening">Side / Top Hinged</span>
+        </div>
+        <div class="spec-item">
+          <span class="spec-label">Thermal Rating</span>
+          <span class="spec-value" id="sSpecThermal">A+ Rated (1.1 W/m²K)</span>
+        </div>
+        <div class="spec-item">
+          <span class="spec-label">Security</span>
+          <span class="spec-value" id="sSpecSecurity">PAS 24 Multi-Point</span>
+        </div>
+        <div class="spec-item">
+          <span class="spec-label">Glass Options</span>
+          <span class="spec-value" id="sSpecGlass">Double / Triple Glazed</span>
+        </div>
+      </div>
+
+      <ul class="material-features-list" id="sModalFeatures">
+        <!-- populated dynamically -->
+      </ul>
+
+      <div class="material-modal-cta">
+        <a href="#quote" onclick="closeStyleModal()" class="btn btn-brass" style="width:100%;text-align:center;justify-content:center;">Get a quote for this style <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
       </div>
     </div>
   </div>
@@ -2246,10 +2574,194 @@ function handleMaterialBackdropClick(event) {
   }
 }
 
+/* ---------- Glazing Styles & Modal Data Script ---------- */
+const glazingStylesData = {
+  casement: {
+    title: 'Casement Windows',
+    tag: 'BESTSELLER · CLASSIC FAVOURITE',
+    img: '/b1.webp',
+    desc: 'Casement windows are hinged at the side or top and open outwards. Highly versatile, weather-tight, and energy efficient, they suit almost any home architectural style.',
+    specs: {
+      opening: 'Side / Top Outward Hinge',
+      thermal: 'A+ Rated (1.1 W/m²K)',
+      security: 'PAS 24 Shoot-bolt Locks',
+      glass: 'Double / Triple Glazed'
+    },
+    features: [
+      'High weather resistance with dual-action continuous seals',
+      'Wide opening aperture for maximum natural airflow & ventilation',
+      'Available in uPVC, Timber & Aluminium with friction stay hinges',
+      'Multi-point locking mechanism with key-locking safety handles',
+      'Customizable frame colors, dummy sashes, and decorative lead work'
+    ]
+  },
+  sash: {
+    title: 'Sash Windows',
+    tag: 'PERIOD ELEGANCE · TIMLESS DESIGN',
+    img: '/b2.webp',
+    desc: 'Traditional vertical sliding sash windows combine period charm with modern energy efficiency, perfect for Georgian, Victorian, and Edwardian property restorations.',
+    specs: {
+      opening: 'Vertical Sliding Double Sash',
+      thermal: 'A Rated Energy Glass',
+      security: 'Concealed Locks & Restrictors',
+      glass: 'Acoustic Double Glazed'
+    },
+    features: [
+      'Authentic box sash styling with smooth spiral balance or weight mechanisms',
+      'Inward tilt-in feature for safe, effortless glass cleaning from inside',
+      'High-performance pile weather seals eliminate cold draughts & rattles',
+      'Heritage horn details, deep bottom rails, and decorative astragal bars',
+      'Available in FSC certified engineered timber and low-maintenance uPVC'
+    ]
+  },
+  flush: {
+    title: 'Flush Windows',
+    tag: 'MODERN DESIGNER · SLEEK SIGHTLINES',
+    img: '/b3.webp',
+    desc: 'Flush casement windows sit completely flush within the outer frame when closed, recreating traditional timber joinery with clean contemporary lines.',
+    specs: {
+      opening: 'Flush Side / Top Hinge',
+      thermal: 'A+ Rated Insulated Frame',
+      security: 'Multi-Point Shoot-bolt',
+      glass: 'Double / Triple Glazed'
+    },
+    features: [
+      'Ultra-flat exterior profile mimicking traditional period timber sashes',
+      'Complements both heritage restorations and modern minimalist builds',
+      'Concealed friction hinges for unobtrusive, seamless exterior view',
+      'Advanced multi-chambered frame design for optimal heat retention',
+      'Wide array of woodgrain foil coatings and architectural matte finishes'
+    ]
+  },
+  bay: {
+    title: 'Bay Windows',
+    tag: 'PANORAMIC VIEWS · MAXIMUM LIGHT',
+    img: '/b4.jpg',
+    desc: 'Bay and bow windows project outwards from the main wall, creating extra internal room space while flooding your living area with panoramic natural sunlight.',
+    specs: {
+      opening: 'Multi-Section Casement / Sash',
+      thermal: 'High-grade Insulated Bays',
+      security: 'Reinforced Corner Posts',
+      glass: 'Low-E Toughened Safety Glass'
+    },
+    features: [
+      '180-degree wide panoramic view of gardens and outdoor surroundings',
+      'Creates decorative interior alcove seating or extended floor space',
+      'Engineered heavy-duty structural bay pole supports for ceiling loads',
+      'Custom angles available in 3-segment, 5-segment, or rounded bow styles',
+      'Combines opening casement or sash sections with fixed picture panes'
+    ]
+  },
+  cottage: {
+    title: 'Cottage Windows',
+    tag: 'RUSTIC CHARM · GEORGIAN BARS',
+    img: '/b5.webp',
+    desc: 'Cottage style windows feature authentic Georgian or astragal grid bars, bringing rustic countryside warmth and classic architectural character to your home.',
+    specs: {
+      opening: 'Side / Top Outward Hinge',
+      thermal: 'A Rated Thermal Glass',
+      security: 'Multi-Point Shoot-bolt',
+      glass: 'Double Glazed Low-E'
+    },
+    features: [
+      'Custom Georgian bar grids inside double glazed units or surface-mounted astragal bars',
+      'Ideal for stone cottages, rural farmhouses, and heritage village properties',
+      'High security friction stay hinges with multi-point perimeter locks',
+      'Durable weather-proof finishes in Chartwell Green, Cream, and Oak',
+      'Excellent acoustic damping for peaceful interior comfort'
+    ]
+  },
+  tilt_turn: {
+    title: 'Tilt & Turn Windows',
+    tag: 'VERSATILE OPENING · EASY CLEAN',
+    img: '/b6.webp',
+    desc: 'Dual-action tilt and turn windows open inwards from the top for secure, rain-proof ventilation, or swing fully inward from the side for safe cleaning.',
+    specs: {
+      opening: 'Inward Tilt & Turn Dual Action',
+      thermal: 'A+ Rated Multi-Chamber',
+      security: 'Perimeter Locking Gearing',
+      glass: 'Acoustic Double / Triple'
+    },
+    features: [
+      'Top-tilt action provides safe, rain-resistant draft-free ventilation',
+      'Side-turn action opens 90 degrees inwards for effortless cleaning without ladders',
+      'Ideal safety design for high-rise apartments and upper floor bedrooms',
+      'Heavy-duty hardware supports large glass pane sizes for expansive views',
+      'Concealed locking points along all four sides for maximum intruder protection'
+    ]
+  },
+  shaped: {
+    title: 'Shaped & Architectural Windows',
+    tag: 'BESPOKE GEOMETRIC · ARCHITECTURAL STATEMENT',
+    img: '/b7.webp',
+    desc: 'Custom-engineered arched, circular, triangular, or gable windows designed to form striking architectural statements in specialized structural openings.',
+    specs: {
+      opening: 'Fixed Picture / Custom Hinge',
+      thermal: 'A Rated Custom Double Glazed',
+      security: 'Internal Bead Glazing',
+      glass: 'Solar Control / Toughened'
+    },
+    features: [
+      'Precision made-to-measure for unique roof pitches, apex gables, and arches',
+      'Seamless aesthetic matching with surrounding standard double glazing',
+      'Solar-control glass options to prevent summer overheating in tall gables',
+      'Available in uPVC, Timber, and Slimline Aluminium frame profiles',
+      'Focal point architectural feature that boosts property value'
+    ]
+  }
+};
+
+function openStyleModal(key) {
+  const data = glazingStylesData[key];
+  if (!data) return;
+
+  document.getElementById('sModalImg').src = data.img;
+  document.getElementById('sModalImg').alt = data.title;
+  document.getElementById('sModalTag').innerText = data.tag;
+  document.getElementById('sModalTitle').innerText = data.title;
+  document.getElementById('sModalDesc').innerText = data.desc;
+  
+  document.getElementById('sSpecOpening').innerText = data.specs.opening;
+  document.getElementById('sSpecThermal').innerText = data.specs.thermal;
+  document.getElementById('sSpecSecurity').innerText = data.specs.security;
+  document.getElementById('sSpecGlass').innerText = data.specs.glass;
+
+  const featuresUl = document.getElementById('sModalFeatures');
+  featuresUl.innerHTML = data.features.map(f => `
+    <li>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+      <span>${f}</span>
+    </li>
+  `).join('');
+
+  const modal = document.getElementById('styleModal');
+  if (modal) {
+    modal.classList.add('active');
+    modal.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+  }
+}
+
+function closeStyleModal() {
+  const modal = document.getElementById('styleModal');
+  if (modal) {
+    modal.classList.remove('active');
+    modal.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  }
+}
+
+function handleStyleBackdropClick(event) {
+  if (event.target && event.target.id === 'styleModal') {
+    closeStyleModal();
+  }
+}
+
 document.addEventListener('keydown', function(event) {
   if (event.key === 'Escape') {
     closeVideoModal();
     closeMaterialModal();
+    closeStyleModal();
   }
 });
 </script>
