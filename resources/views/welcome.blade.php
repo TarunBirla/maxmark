@@ -726,15 +726,16 @@ section{padding:80px 0;}
 .glazing-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
-  margin-top: 36px;
+  gap: 20px;
+  max-width: 880px;
+  margin: 36px auto 0;
 }
 .glazing-card {
   background: #ffffff;
   border: 1px solid #e2e8f0;
-  border-radius: 12px;
+  border-radius: 10px;
   overflow: hidden;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
   transition: transform 0.35s var(--ease), box-shadow 0.35s var(--ease), border-color 0.35s var(--ease);
   cursor: pointer;
   display: flex;
@@ -742,13 +743,13 @@ section{padding:80px 0;}
   position: relative;
 }
 .glazing-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.12);
+  transform: translateY(-5px);
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.1);
   border-color: var(--brass);
 }
 .glazing-card-img {
   width: 100%;
-  aspect-ratio: 1/1;
+  aspect-ratio: 4/3;
   overflow: hidden;
   background: #f8fafc;
   position: relative;
@@ -763,7 +764,7 @@ section{padding:80px 0;}
   transform: scale(1.05);
 }
 .glazing-card-body {
-  padding: 22px 20px;
+  padding: 16px 18px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -771,7 +772,7 @@ section{padding:80px 0;}
   border-top: 1px solid #f1f5f9;
 }
 .glazing-card-body h3 {
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 600;
   color: var(--ink);
   font-family: 'Space Grotesk', sans-serif;
@@ -782,8 +783,8 @@ section{padding:80px 0;}
   color: var(--brass);
 }
 .glazing-card-arrow {
-  width: 28px;
-  height: 28px;
+  width: 26px;
+  height: 26px;
   border-radius: 50%;
   background: #f8fafc;
   display: flex;
@@ -808,7 +809,11 @@ section{padding:80px 0;}
 .material-modal-backdrop {
   position: fixed;
   inset: 0;
-  z-index: 9999;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 99999;
   background: rgba(18, 22, 28, 0.75);
   backdrop-filter: blur(8px);
   display: flex;
@@ -818,6 +823,7 @@ section{padding:80px 0;}
   opacity: 0;
   pointer-events: none;
   transition: opacity 0.3s var(--ease);
+  overflow-y: auto;
 }
 .material-modal-backdrop.active {
   opacity: 1;
@@ -826,16 +832,17 @@ section{padding:80px 0;}
 .material-modal-container {
   background: #ffffff;
   width: 100%;
-  max-width: 840px;
-  max-height: 90vh;
+  max-width: 820px;
+  max-height: 85vh;
   overflow-y: auto;
   border-radius: 16px;
-  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.35);
   position: relative;
+  margin: auto;
   transform: scale(0.95) translateY(10px);
   transition: transform 0.35s var(--ease);
   display: grid;
-  grid-template-columns: 0.9fr 1.1fr;
+  grid-template-columns: 0.85fr 1.15fr;
 }
 .material-modal-backdrop.active .material-modal-container {
   transform: scale(1) translateY(0);
@@ -965,23 +972,39 @@ section{padding:80px 0;}
 
 @media (max-width: 900px) {
   .glazing-grid {
-    grid-template-columns: 1fr;
-    gap: 18px;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+    max-width: 100%;
+  }
+  .material-modal-backdrop {
+    padding: 12px;
   }
   .material-modal-container {
     grid-template-columns: 1fr;
     max-height: 85vh;
+    width: 100%;
+    margin: auto;
+    border-radius: 12px;
   }
   .material-modal-img {
     border-right: none;
     border-bottom: 1px solid #f1f5f9;
     padding: 16px;
+    background: #f8fafc;
   }
   .material-modal-img img {
-    max-height: 220px;
+    max-height: 180px;
+    object-fit: contain;
   }
   .material-modal-content {
-    padding: 24px 20px;
+    padding: 20px 16px;
+  }
+  .material-modal-content h3 {
+    font-size: 20px;
+  }
+  .material-modal-desc {
+    font-size: 13.5px;
+    margin-bottom: 14px;
   }
 }
 /* ===================== DOUBLE GLAZING STYLES ===================== */
@@ -1542,7 +1565,9 @@ section{padding:80px 0;}
       </div>
     </div>
   </div>
-</section><!-- ===================== DOUBLE GLAZING STYLES ===================== -->
+</section>
+
+<!-- ===================== DOUBLE GLAZING STYLES ===================== -->
 <section class="styles-section" id="glazing-styles">
   <div class="wrap">
     <div class="styles-head reveal">
@@ -2090,6 +2115,8 @@ section{padding:80px 0;}
       </div>
     </div>
   </div>
+</div>
+
 <!-- ===================== GLAZING STYLE DETAILS MODAL ===================== -->
 <div class="material-modal-backdrop" id="styleModal" onclick="handleStyleBackdropClick(event)" aria-hidden="true">
   <div class="material-modal-container">
